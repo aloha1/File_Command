@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
@@ -17,16 +18,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import aaron.filecommand.R;
-
-import static android.content.Context.MODE_PRIVATE;
+import aaron.filecommand.adapter.HomeAdapter;
+import aaron.filecommand.model.ClassBean;
 
 /**
  * Created by Yunwen on 5/22/2017.
@@ -36,8 +33,8 @@ public class HomeFragment extends Fragment {
     String TAG = "HistoryFragment";
     private SharedPreferences sharedPrefs;
     RecyclerView mRecyclerView;
-    //private HistoryAdapter historyAdapter;
-    List<String> list = new ArrayList<>();
+    private HomeAdapter homeAdapter;
+    List<ClassBean> listClass = new ArrayList<>();
     private Context mContext;
     private SearchView searchView;
     private EditText editText;
@@ -61,21 +58,19 @@ public class HomeFragment extends Fragment {
         initView(view);
     }
 
-    private void initData(){}
+    private void initData(){
 
-    private void writeBoard() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
     }
 
     private void initView(View view){
-
+        initRecycler(view);
     }
 
     private void initRecycler(View view){
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerview_home);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-//        historyAdapter = new HistoryAdapter(getActivity(),listClass);
-//        mRecyclerView.setAdapter(historyAdapter);
+        mRecyclerView = view.findViewById(R.id.recyclerview_home);
+        mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));
+        homeAdapter = new HomeAdapter(getActivity(),listClass);
+        mRecyclerView.setAdapter(homeAdapter);
     }
     @Override
     public void onStop() {

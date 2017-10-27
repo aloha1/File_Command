@@ -3,34 +3,65 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/nav_go_premium"
             android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
+            android:title="Go premium" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/nav_home"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
+            android:title="Home" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/nav_recent_files"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
+            android:title="Recent Files" />
         <item
-            android:id="@+id/nav_manage"
+            android:id="@+id/nav_favorite"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:title="Favorites" />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="">
         <menu>
             <item
-                android:id="@+id/nav_share"
+                android:id="@+id/nav_internal_shared_storage"
                 android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+                android:title="Internal Shared Storage" />
             <item
-                android:id="@+id/nav_send"
+                android:id="@+id/nav_ftp"
                 android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:title="FTP" />
         </menu>
     </item>
-
+    <item android:title="">
+        <menu>
+            <item
+            android:id="@+id/nav_pictures"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Pictures" />
+            <item
+                android:id="@+id/nav_music"
+                android:icon="@drawable/ic_menu_slideshow"
+                android:title="Music" />
+            <item
+                android:id="@+id/nav_videos"
+                android:icon="@drawable/ic_menu_slideshow"
+                android:title="Videos" />
+            <item
+                android:id="@+id/nav_documents"
+                android:icon="@drawable/ic_menu_slideshow"
+                android:title="Documents" />
+            <item
+                android:id="@+id/nav_achieves"
+                android:icon="@drawable/ic_menu_slideshow"
+                android:title="Achieves" />
+            <item
+                android:id="@+id/nav_downloads"
+                android:icon="@drawable/ic_menu_slideshow"
+                android:title="Downloads" />
+            <item
+                android:id="@+id/nav_settings"
+                android:icon="@drawable/ic_menu_slideshow"
+                android:title="Settings" />
+        </menu>
+    </item>
 </menu>
