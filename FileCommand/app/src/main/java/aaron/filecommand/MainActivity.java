@@ -10,6 +10,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import aaron.filecommand.fragment.HomeFragment;
 
@@ -27,7 +29,11 @@ public class MainActivity extends AppCompatActivity
     private void initNavigation(){
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        LinearLayout layoutToolbar = (LinearLayout)
+                toolbar.findViewById(R.id.toolbar_item_container);
+//        ImageView myImage = new ImageView(this);
+//        myImage.setImageResource(R.drawable.me);
+//        layoutToolbar.addView(myImage);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -40,8 +46,7 @@ public class MainActivity extends AppCompatActivity
 
     private void initFragment(){
         addNewFragment(new HomeFragment());
-       // setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("My title");
+        getSupportActionBar().setTitle("Home");
     }
 
     @Override
@@ -82,18 +87,20 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_go_premium) {
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-//            setSupportActionBar(toolbar);
-            getSupportActionBar().setTitle("Gallery");
-        } else if (id == R.id.nav_slideshow) {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_home) {
+            getSupportActionBar().setTitle("Home");
+        } else if (id == R.id.nav_recent_files) {
+            getSupportActionBar().setTitle("Recent");
+        } else if (id == R.id.nav_favorite) {
 
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_internal_shared_storage) {
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_ftp) {
+
+        }else{
 
         }
 
