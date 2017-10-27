@@ -1,4 +1,4 @@
-package aaron.filecommand;
+package aaron.filecommand.activity;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import aaron.filecommand.R;
 import aaron.filecommand.fragment.HomeFragment;
 
 public class MainActivity extends AppCompatActivity
@@ -31,9 +32,6 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
         LinearLayout layoutToolbar = (LinearLayout)
                 toolbar.findViewById(R.id.toolbar_item_container);
-//        ImageView myImage = new ImageView(this);
-//        myImage.setImageResource(R.drawable.me);
-//        layoutToolbar.addView(myImage);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
