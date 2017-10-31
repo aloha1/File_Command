@@ -17,18 +17,18 @@ import aaron.filecommand.model.ClassBean;
 
 import static android.content.Context.MODE_PRIVATE;
 
-public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class AppStoreAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public enum ITEM_TYPE {
         ITEM_TYPE_IMAGE,
         ITEM_TYPE_TEXT
     }
     private SharedPreferences sharedPrefs;
-    private final static String TAG = "HomeAdapter";
+    private final static String TAG = "AppStoreAdapter";
     private final LayoutInflater mLayoutInflater;
     private final Context mContext;
     private List<ClassBean> dataList;
 
-    public HomeAdapter(Context context, List<ClassBean> dataList) {
+    public AppStoreAdapter(Context context, List<ClassBean> dataList) {
         mContext = context;
         mLayoutInflater = LayoutInflater.from(context);
         this.dataList = dataList;
