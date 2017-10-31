@@ -8,13 +8,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/card_normal"
+        android:layout_margin="@dimen/activity_margin_smaller"
         app:cardCornerRadius="@dimen/card_radius"
         app:cardElevation="8dp">
 
         <RelativeLayout
             android:id="@+id/layout_content"
-            android:layout_width="@dimen/image_history_width"
-            android:layout_height="@dimen/home_card_height"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/card_history_height"
             android:layout_marginTop="@dimen/card_margin"
             android:layout_alignParentLeft="true">
             <ImageView
@@ -22,8 +23,8 @@
                 android:layout_width="@dimen/home_card_height"
                 android:layout_height="@dimen/home_card_height"
                 android:scaleType="fitXY"
-                android:layout_alignParentLeft="true"
-                />
+                android:layout_margin="@dimen/activity_margin_smaller"
+                android:layout_alignParentLeft="true" />
             <TextView
                 android:id="@+id/text_appstore_title"
                 android:layout_width="wrap_content"
@@ -52,6 +53,7 @@
                 android:layout_marginLeft="@dimen/searchview_margin"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
+                android:text="GET"
                 android:textColor="@color/colorPrimary" />
 
         </RelativeLayout>

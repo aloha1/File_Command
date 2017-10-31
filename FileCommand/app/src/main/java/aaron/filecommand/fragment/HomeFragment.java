@@ -10,6 +10,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +24,7 @@ import java.util.List;
 
 import aaron.filecommand.R;
 import aaron.filecommand.adapter.HomeAdapter;
+import aaron.filecommand.adapter.helper.SimpleItemTouchHelperCallback;
 import aaron.filecommand.model.ClassBean;
 
 /**
@@ -42,7 +44,7 @@ public class HomeFragment extends Fragment {
     public HomeFragment(){
         mContext = getActivity();
     }
-
+    private ItemTouchHelper mItemTouchHelper;
     public void dataFlow(){
 
     }
@@ -59,7 +61,21 @@ public class HomeFragment extends Fragment {
     }
 
     private void initData(){
-
+        ClassBean c1 = new ClassBean();
+        c1.setTagString("Pictues");
+        listClass.add(c1);
+        ClassBean c2 = new ClassBean();
+        c2.setTagString("Music");
+        listClass.add(c2);
+        ClassBean c3 = new ClassBean();
+        c3.setTagString("Videos");
+        listClass.add(c3);
+        ClassBean c4 = new ClassBean();
+        c4.setTagString("Documents");
+        listClass.add(c4);
+        ClassBean c5 = new ClassBean();
+        c5.setTagString("Acheives");
+        listClass.add(c5);
     }
 
     private void initView(View view){
@@ -68,9 +84,18 @@ public class HomeFragment extends Fragment {
 
     private void initRecycler(View view){
         mRecyclerView = view.findViewById(R.id.recyclerview_home);
-        mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));
         homeAdapter = new HomeAdapter(getActivity(),listClass);
+
         mRecyclerView.setAdapter(homeAdapter);
+        mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));
+
+
+
+
+        ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(homeAdapter);
+        mItemTouchHelper = new ItemTouchHelper(callback);
+        mItemTouchHelper.attachToRecyclerView(mRecyclerView);
+
     }
     @Override
     public void onStop() {
