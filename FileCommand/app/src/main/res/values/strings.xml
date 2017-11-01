@@ -10,4 +10,6 @@
     <string-array name="category">
         <item>Pictures</item>
     </string-array>
+
+    <string name="ad_unit_id_algo">ca-app-pub-3456168518371304/2700959193</string>
 </resources>

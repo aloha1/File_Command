@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity
         toolbarTitle = (TextView) findViewById(R.id.text_toolbar_title);
         imageToolbar = (ImageView) findViewById(R.id.imgae_toolbar_title);
 
+       // mNavigationView.setItemIconTintList(null);
         setToolbarHome();
 
         RelativeLayout layoutToolbar = (RelativeLayout)
@@ -58,6 +59,7 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setItemIconTintList(null);
         navigationView.setNavigationItemSelectedListener(this);
     }
 
