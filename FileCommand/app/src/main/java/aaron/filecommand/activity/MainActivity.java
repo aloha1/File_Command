@@ -1,7 +1,10 @@
 package aaron.filecommand.activity;
 
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -10,15 +13,25 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import aaron.filecommand.R;
 import aaron.filecommand.fragment.HomeFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
     private Toolbar toolbar;
+    private TextView toolbarTitle;
+    private ImageView imageToolbar;
+
+    private boolean doubleClick = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,8 +43,15 @@ public class MainActivity extends AppCompatActivity
     private void initNavigation(){
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        LinearLayout layoutToolbar = (LinearLayout)
+        toolbarTitle = (TextView) findViewById(R.id.text_toolbar_title);
+        imageToolbar = (ImageView) findViewById(R.id.imgae_toolbar_title);
+
+       // mNavigationView.setItemIconTintList(null);
+        setToolbarHome();
+
+        RelativeLayout layoutToolbar = (RelativeLayout)
                 toolbar.findViewById(R.id.toolbar_item_container);
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -39,23 +59,30 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setItemIconTintList(null);
         navigationView.setNavigationItemSelectedListener(this);
     }
 
     private void initFragment(){
         addNewFragment(new HomeFragment());
-        getSupportActionBar().setTitle("Home");
+        setToolbarHome();
     }
 
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
+    private void setToolbarHome(){
+        toolbarTitle.setText("Home");
+        imageToolbar.setImageResource(R.drawable.bag_white);
+        imageToolbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, AppStoreActivity.class);
+                startActivity(intent);
+            }
+        });
     }
+//    @Override
+//    public void onBackPressed() {
+//
+//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -89,9 +116,11 @@ public class MainActivity extends AppCompatActivity
             // Handle the camera action
 
         } else if (id == R.id.nav_home) {
-            getSupportActionBar().setTitle("Home");
+//            getSupportActionBar().setTitle("Home");
+            setToolbarHome();
         } else if (id == R.id.nav_recent_files) {
-            getSupportActionBar().setTitle("Recent");
+//            getSupportActionBar().setTitle("Recent");
+            toolbarTitle.setText("Recent");
         } else if (id == R.id.nav_favorite) {
 
         } else if (id == R.id.nav_internal_shared_storage) {
@@ -110,5 +139,33 @@ public class MainActivity extends AppCompatActivity
     public void addNewFragment(Fragment fragment){
         getFragmentManager().beginTransaction().replace(R.id.container, fragment, "SubFragment")
                 .addToBackStack("SubFragment").commit();
+    }
+
+    @Override
+    public void onBackPressed() {
+        FragmentManager fm = getFragmentManager();
+        Fragment current = fm.findFragmentById(R.id.container);
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            if (fm.getBackStackEntryCount() > 1) {
+                fm.popBackStack();
+
+            } else {
+                if (doubleClick) {
+                    finish();
+                }
+                this.doubleClick = true;
+                Toast.makeText(this, "再次点击退出", Toast.LENGTH_SHORT).show();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        doubleClick = false;
+                    }
+                }, 1000);
+            }
+        }
     }
 }

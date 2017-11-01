@@ -19,9 +19,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!--activity other store-->
+        <activity android:name=".activity.AppStoreActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:launchMode="singleTop"/>
     </application>
-
-    <!--activity other store-->
     <!--Activity exit only-->
 
 </manifest>
