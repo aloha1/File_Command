@@ -24,7 +24,7 @@ import aaron.filecommand.R;
 
 public class AppStoreActivity extends AppCompatActivity {
     private Toolbar toolbar;
-    private TextView toolbarTitle;
+    private TextView toolbarTitle, textTitle, textContent;
     private ImageView imageToolbar;
     private CardView cardView;
 
@@ -50,21 +50,19 @@ public class AppStoreActivity extends AppCompatActivity {
                 openAppRating(getApplicationContext());
             }
         });
+        textTitle = (TextView) findViewById(R.id.text_appstore_title);
+        textTitle.setText(R.string.file_command_title);
+        textContent = (TextView) findViewById(R.id.text_appstore_content);
+        textContent.setText(R.string.file_command_content);
     }
 
     private void setToolbarHome(){
-        toolbarTitle.setText("Our Recommended Apps");
+        toolbarTitle.setText(R.string.our_recommend_app);
     }
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
-    }
-
-    private void goToAppStore() {
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setData(Uri.parse("market://details?id=com.example.android"));
-        startActivity(intent);
     }
 
     public static void openAppRating(Context context) {

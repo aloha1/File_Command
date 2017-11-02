@@ -23,6 +23,10 @@
         <activity android:name=".activity.AppStoreActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:launchMode="singleTop"/>
+
+        <activity android:name=".activity.AddCategoryActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:launchMode="singleTop"/>
     </application>
     <!--Activity exit only-->
 

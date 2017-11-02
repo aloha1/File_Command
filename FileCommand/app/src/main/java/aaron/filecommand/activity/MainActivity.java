@@ -46,7 +46,6 @@ public class MainActivity extends AppCompatActivity
         toolbarTitle = (TextView) findViewById(R.id.text_toolbar_title);
         imageToolbar = (ImageView) findViewById(R.id.imgae_toolbar_title);
 
-       // mNavigationView.setItemIconTintList(null);
         setToolbarHome();
 
         RelativeLayout layoutToolbar = (RelativeLayout)
@@ -79,10 +78,6 @@ public class MainActivity extends AppCompatActivity
             }
         });
     }
-//    @Override
-//    public void onBackPressed() {
-//
-//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -116,10 +111,8 @@ public class MainActivity extends AppCompatActivity
             // Handle the camera action
 
         } else if (id == R.id.nav_home) {
-//            getSupportActionBar().setTitle("Home");
             setToolbarHome();
         } else if (id == R.id.nav_recent_files) {
-//            getSupportActionBar().setTitle("Recent");
             toolbarTitle.setText("Recent");
         } else if (id == R.id.nav_favorite) {
 

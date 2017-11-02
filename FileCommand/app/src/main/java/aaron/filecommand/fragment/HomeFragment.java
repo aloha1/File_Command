@@ -3,6 +3,7 @@ package aaron.filecommand.fragment;
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -23,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import aaron.filecommand.R;
+import aaron.filecommand.activity.AddCategoryActivity;
 import aaron.filecommand.adapter.HomeAdapter;
 import aaron.filecommand.adapter.helper.SimpleItemTouchHelperCallback;
 import aaron.filecommand.model.ClassBean;
@@ -40,7 +42,7 @@ public class HomeFragment extends Fragment {
     private Context mContext;
     private SearchView searchView;
     private EditText editText;
-    private ImageView imageViewSearch;
+    private ImageView imageViewSearch, imageAnalyzer;
     public HomeFragment(){
         mContext = getActivity();
     }
@@ -80,6 +82,14 @@ public class HomeFragment extends Fragment {
 
     private void initView(View view){
         initRecycler(view);
+        imageAnalyzer = view.findViewById(R.id.image_home_analyzer);
+        imageAnalyzer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), AddCategoryActivity.class);
+                getActivity().startActivity(intent);
+            }
+        });
     }
 
     private void initRecycler(View view){
