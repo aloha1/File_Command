@@ -66,7 +66,7 @@ public class CategoryRepo {
                 Category.KEY_coverImageUri+","+
                 Category.KEY_teacher+","+
                 Category.KEY_time +" FROM "+ Category.TABLE;
-        ArrayList<HashMap<String,String>> algorithmList=new ArrayList<>();
+        ArrayList<HashMap<String,String>> algorithmList = new ArrayList<>();
         Cursor cursor=db.rawQuery(selectQuery,null);
 
         if(cursor.moveToFirst()){

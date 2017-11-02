@@ -3,14 +3,19 @@ package aaron.filecommand.activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,17 +25,28 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.List;
+
 import aaron.filecommand.R;
+import aaron.filecommand.dao.Category;
+import aaron.filecommand.dao.CategoryRepo;
 import aaron.filecommand.fragment.HomeFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    public enum AppStart {
+        FIRST_TIME, FIRST_TIME_VERSION, NORMAL;
+    }
+    private static final String LAST_APP_VERSION = "last_app_version";
 
+    private String TAG  = "MainActivity";
     private Toolbar toolbar;
     private TextView toolbarTitle;
     private ImageView imageToolbar;
 
     private boolean doubleClick = false;
+
+    private int _algorithm_id = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +76,22 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setItemIconTintList(null);
         navigationView.setNavigationItemSelectedListener(this);
+
+        switch (checkAppStart()) {
+            case NORMAL:
+                // We don't want to get on the user's nerves
+                break;
+            case FIRST_TIME_VERSION:
+                // TODO show what's new
+                addToHome();
+                break;
+            case FIRST_TIME:
+                // TODO show a tutorial
+                addToHome();
+                break;
+            default:
+                break;
+        }
     }
 
     private void initFragment(){
@@ -132,6 +164,72 @@ public class MainActivity extends AppCompatActivity
     public void addNewFragment(Fragment fragment){
         getFragmentManager().beginTransaction().replace(R.id.container, fragment, "SubFragment")
                 .addToBackStack("SubFragment").commit();
+    }
+
+    private void addToHome(){
+        addToFavorite(getString(R.string.text_tick_picture));
+        addToFavorite(getString(R.string.text_tick_music));
+        addToFavorite(getString(R.string.text_tick_documents));
+        addToFavorite(getString(R.string.text_tick_secured_files));
+        addToFavorite(getString(R.string.text_tick_pc_file_transfer));
+        addToFavorite(getString(R.string.text_tick_favorites));
+        addToFavorite(getString(R.string.text_tick_recent_files));
+    }
+    private void addToFavorite(String topic) {
+        CategoryRepo repo = new CategoryRepo(this);
+        Category category = repo.getColumnByTopic(topic);
+        try {
+            if (category.topic.equals(topic)) {
+                repo.update(category);
+                Toast.makeText(this, "没有内容", Toast.LENGTH_SHORT).show();
+            }
+        } catch (Exception e) {
+            category.time = 25;
+            category.content = "";
+            category.topic = topic;
+            category.dbId = _algorithm_id;
+            _algorithm_id = repo.insert(category);
+            Log.d(TAG, "add:"+category.topic);
+            Toast.makeText(this, "收藏", Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+        }
+    }
+
+    public AppStart checkAppStart() {
+        PackageInfo pInfo;
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(this);
+        AppStart appStart = AppStart.NORMAL;
+        try {
+            pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+            int lastVersionCode = sharedPreferences
+                    .getInt(LAST_APP_VERSION, -1);
+            int currentVersionCode = pInfo.versionCode;
+            appStart = checkAppStart(currentVersionCode, lastVersionCode);
+            // Update version in preferences
+            sharedPreferences.edit()
+                    .putInt(LAST_APP_VERSION, currentVersionCode).commit();
+        } catch (PackageManager.NameNotFoundException e) {
+            Log.w("Check Start",
+                    "Unable to determine current app version from pacakge manager. Defenisvely assuming normal app start.");
+        }
+        return appStart;
+    }
+
+    public AppStart checkAppStart(int currentVersionCode, int lastVersionCode) {
+        if (lastVersionCode == -1) {
+            return AppStart.FIRST_TIME;
+        } else if (lastVersionCode < currentVersionCode) {
+            return AppStart.FIRST_TIME_VERSION;
+        } else if (lastVersionCode > currentVersionCode) {
+            Log.d("Check Start", "Current version code (" + currentVersionCode
+                    + ") is less then the one recognized on last startup ("
+                    + lastVersionCode
+                    + "). Defenisvely assuming normal app start.");
+            return AppStart.NORMAL;
+        } else {
+            return AppStart.NORMAL;
+        }
     }
 
     @Override
