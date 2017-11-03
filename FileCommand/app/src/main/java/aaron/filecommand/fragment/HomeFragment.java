@@ -56,33 +56,19 @@ public class HomeFragment extends Fragment {
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        initData();
+        initData(view);
         initView(view);
     }
 
-    private void initData(){
-        listAll();
-//        ClassBean c1 = new ClassBean();
-//        c1.setTagString("Pictues");
-//        listClass.add(c1);
-//        ClassBean c2 = new ClassBean();
-//        c2.setTagString("Music");
-//        listClass.add(c2);
-//        ClassBean c3 = new ClassBean();
-//        c3.setTagString("Videos");
-//        listClass.add(c3);
-//        ClassBean c4 = new ClassBean();
-//        c4.setTagString("Documents");
-//        listClass.add(c4);
-//        ClassBean c5 = new ClassBean();
-//        c5.setTagString("Acheives");
-//        listClass.add(c5);
+    private void initData(View view){
+        listAll(view);
     }
 
     private void initView(View view){
@@ -110,7 +96,7 @@ public class HomeFragment extends Fragment {
 
     }
 
-    public void listAll() {
+    public void listAll(View view) {
         int _algorithm_id = 0;
         CategoryRepo repo = new CategoryRepo(getActivity());
         Category category = new Category();
@@ -118,13 +104,13 @@ public class HomeFragment extends Fragment {
         category = repo.getColumnById(_algorithm_id);
         ArrayList<HashMap<String, String>> algorithmList = repo.getAlgorithmList();
         if (algorithmList.size() != 0) {//Show Db list
-            initRecyclerView(algorithmList);
+            initRecyclerView(algorithmList, view);
         } else {
             Toast.makeText(getActivity(), "No Content!", Toast.LENGTH_SHORT).show();
         }
     }
 
-    private void initRecyclerView(ArrayList<HashMap<String, String>> algorithmList){
+    private void initRecyclerView(ArrayList<HashMap<String, String>> algorithmList, View view){
         for(int i = 0; i< algorithmList.size();i++){
             String data = algorithmList.get(i).get("topic");
             Log.d(TAG,"The "+i+"th is: "+data);
@@ -136,10 +122,12 @@ public class HomeFragment extends Fragment {
             classBean.setTagString(data.replace("image_tick_",""));
             classBean.setCoverImageUri(data);
             listClass.add(classBean);
+            initRecycler(view);
         }
     }
     @Override
     public void onStop() {
         super.onStop();
     }
+
 }
