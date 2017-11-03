@@ -1,5 +1,6 @@
 package aaron.filecommand.activity;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
@@ -78,9 +79,6 @@ public class AddCategoryActivity extends AppCompatActivity implements View.OnCli
     }
 
     public void onClick(View v) {
-        Log.d(TAG, "ID number: "+v.getId());
-        //try to parse the res id to process
-
         changeImageLike(v.getId());
     }
     @Override
@@ -131,21 +129,6 @@ public class AddCategoryActivity extends AppCompatActivity implements View.OnCli
             Log.d(TAG,"The "+i+"th ID is: "+resId);
             ImageView imageTarget = (ImageView) findViewById(resId);
             imageTarget.setImageResource(R.drawable.tick);
-            //        Integer integer = (Integer) imageTarget.getTag();
-//            integer = integer == null ? 0 : integer;
-//            switch(integer) {
-//                case R.drawable.tick:
-//                    imageTarget.setImageResource(R.drawable.square);
-//                    imageTarget.setTag(R.drawable.square);
-//                    deleteFavorite(data);//topic is from the imageTarget, --> textTarget --> topic
-//                    break;
-//                case R.drawable.square:
-//                default:
-//                    imageTarget.setImageResource(R.drawable.tick);
-//                    imageTarget.setTag(R.drawable.tick);
-//                    addToFavorite(data);
-//                    break;
-//            }
         }
     }
     private void checkTick(ImageView image, TextView textView){
@@ -173,6 +156,7 @@ public class AddCategoryActivity extends AppCompatActivity implements View.OnCli
         //transfer id from image to text
         ImageView imageTarget =  (ImageView) findViewById(resId);
         assert(resId == imageTarget.getId());
+        Drawable drawableId =  imageTarget.getDrawable();
         Integer integer = (Integer) imageTarget.getTag();
         integer = integer == null ? 0 : integer;
         switch(integer) {
@@ -192,7 +176,6 @@ public class AddCategoryActivity extends AppCompatActivity implements View.OnCli
 
 
     private void deleteFavorite(String topic) {
-        //String topic = listClassBean.get(position).getTitle();
         CategoryRepo repo = new CategoryRepo(this);
         Category dbFavorite = repo.getColumnByTopic(topic);
         Log.d(TAG, "delete:"+topic);

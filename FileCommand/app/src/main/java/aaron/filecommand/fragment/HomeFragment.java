@@ -19,14 +19,18 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import aaron.filecommand.R;
 import aaron.filecommand.activity.AddCategoryActivity;
 import aaron.filecommand.adapter.HomeAdapter;
 import aaron.filecommand.adapter.helper.SimpleItemTouchHelperCallback;
+import aaron.filecommand.dao.Category;
+import aaron.filecommand.dao.CategoryRepo;
 import aaron.filecommand.model.ClassBean;
 
 /**
@@ -63,21 +67,22 @@ public class HomeFragment extends Fragment {
     }
 
     private void initData(){
-        ClassBean c1 = new ClassBean();
-        c1.setTagString("Pictues");
-        listClass.add(c1);
-        ClassBean c2 = new ClassBean();
-        c2.setTagString("Music");
-        listClass.add(c2);
-        ClassBean c3 = new ClassBean();
-        c3.setTagString("Videos");
-        listClass.add(c3);
-        ClassBean c4 = new ClassBean();
-        c4.setTagString("Documents");
-        listClass.add(c4);
-        ClassBean c5 = new ClassBean();
-        c5.setTagString("Acheives");
-        listClass.add(c5);
+        listAll();
+//        ClassBean c1 = new ClassBean();
+//        c1.setTagString("Pictues");
+//        listClass.add(c1);
+//        ClassBean c2 = new ClassBean();
+//        c2.setTagString("Music");
+//        listClass.add(c2);
+//        ClassBean c3 = new ClassBean();
+//        c3.setTagString("Videos");
+//        listClass.add(c3);
+//        ClassBean c4 = new ClassBean();
+//        c4.setTagString("Documents");
+//        listClass.add(c4);
+//        ClassBean c5 = new ClassBean();
+//        c5.setTagString("Acheives");
+//        listClass.add(c5);
     }
 
     private void initView(View view){
@@ -99,13 +104,39 @@ public class HomeFragment extends Fragment {
         mRecyclerView.setAdapter(homeAdapter);
         mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));
 
-
-
-
         ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(homeAdapter);
         mItemTouchHelper = new ItemTouchHelper(callback);
         mItemTouchHelper.attachToRecyclerView(mRecyclerView);
 
+    }
+
+    public void listAll() {
+        int _algorithm_id = 0;
+        CategoryRepo repo = new CategoryRepo(getActivity());
+        Category category = new Category();
+        Log.d(TAG, "The id is: " + _algorithm_id);
+        category = repo.getColumnById(_algorithm_id);
+        ArrayList<HashMap<String, String>> algorithmList = repo.getAlgorithmList();
+        if (algorithmList.size() != 0) {//Show Db list
+            initRecyclerView(algorithmList);
+        } else {
+            Toast.makeText(getActivity(), "No Content!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void initRecyclerView(ArrayList<HashMap<String, String>> algorithmList){
+        for(int i = 0; i< algorithmList.size();i++){
+            String data = algorithmList.get(i).get("topic");
+            Log.d(TAG,"The "+i+"th is: "+data);
+            //transfer to resId
+            int resId = getResources().getIdentifier(data, "id", getActivity().getPackageName());
+            Log.d(TAG,"The "+i+"th ID is: "+resId);
+            //transfer image name into image id and text,
+            ClassBean classBean = new ClassBean();
+            classBean.setTagString(data.replace("image_tick_",""));
+            classBean.setCoverImageUri(data);
+            listClass.add(classBean);
+        }
     }
     @Override
     public void onStop() {
