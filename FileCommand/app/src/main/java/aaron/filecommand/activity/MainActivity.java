@@ -167,13 +167,13 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void addToHome(){
-        addToFavorite(getString(R.string.text_tick_picture));
-        addToFavorite(getString(R.string.text_tick_music));
-        addToFavorite(getString(R.string.text_tick_documents));
-        addToFavorite(getString(R.string.text_tick_secured_files));
-        addToFavorite(getString(R.string.text_tick_pc_file_transfer));
-        addToFavorite(getString(R.string.text_tick_favorites));
-        addToFavorite(getString(R.string.text_tick_recent_files));
+        addToFavorite("image_tick_picture");
+        addToFavorite("image_tick_music");
+        addToFavorite("image_tick_documents");
+        addToFavorite("image_tick_secured_files");
+        addToFavorite("image_tick_pc_files_transfer");
+        addToFavorite("image_tick_favorites");
+        addToFavorite("image_tick_recent_files");
     }
     private void addToFavorite(String topic) {
         CategoryRepo repo = new CategoryRepo(this);

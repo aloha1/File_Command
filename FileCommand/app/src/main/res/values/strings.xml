@@ -12,6 +12,7 @@
     </string-array>
 
     <string name="our_recommend_app">Our Recommended App</string>
+    <string name="title_add_category">Add Category</string>
     
     <!--File Command-->
     <string name="file_command_title">File Command</string>

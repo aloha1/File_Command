@@ -24,14 +24,16 @@ import aaron.filecommand.dao.CategoryRepo;
  * Created by Yunwen on 10/30/2017.
  */
 
-public class AddCategoryActivity extends AppCompatActivity {
+public class AddCategoryActivity extends AppCompatActivity implements View.OnClickListener{
     private String TAG = "AddCategoryActivity";
     private Toolbar toolbar;
     private TextView toolbarTitle, textTitle, textContent;
-    private ImageView imageToolbar;
+    private ImageView imagePicture, imageMusic, imageVideos, imageDocuments, imageArchives, imageDownloads, imageSecuredFiles;
+    private ImageView imageRecentFiles, imageConvertFiles, imageRecycleBin, imageFavorites,imagePcFileTransfer,imageScreenSharing;
     private CardView cardView;
-
     private RecyclerView mRecyclerView;
+    private int _algorithm_id = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,15 +48,41 @@ public class AddCategoryActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         toolbarTitle = (TextView) findViewById(R.id.text_toolbar_title);
         setToolbarHome();
-
-
-
+        setImageView();
+        listAll();
     }
 
     private void setToolbarHome(){
-        toolbarTitle.setText("Add Category");
+        toolbarTitle.setText(R.string.title_add_category);
     }
 
+    private void setImageView(){
+        imagePicture = (ImageView) findViewById(R.id.image_tick_picture);
+        imageMusic = (ImageView) findViewById(R.id.image_tick_music);
+        imageVideos = (ImageView) findViewById(R.id.image_tick_videos);
+        imageDocuments = (ImageView) findViewById(R.id.image_tick_documents);
+        imageArchives = (ImageView) findViewById(R.id.image_tick_archives);
+        imageDownloads = (ImageView) findViewById(R.id.image_tick_downloads);
+        imageSecuredFiles = (ImageView) findViewById(R.id.image_tick_secured_files);
+        imageRecentFiles = (ImageView) findViewById(R.id.image_tick_recent_files);
+        imageConvertFiles = (ImageView) findViewById(R.id.image_tick_convert_files);
+        imageRecycleBin = (ImageView) findViewById(R.id.image_tick_recycle_bin);
+        imageFavorites = (ImageView) findViewById(R.id.image_tick_favorites);
+        imagePcFileTransfer = (ImageView) findViewById(R.id.image_tick_pc_files_transfer);
+        imageScreenSharing = (ImageView) findViewById(R.id.image_tick_screen_sharing);
+        imagePicture.setOnClickListener(this);imageMusic.setOnClickListener(this); imageVideos.setOnClickListener(this);
+        imageDocuments.setOnClickListener(this); imageArchives.setOnClickListener(this); imageDownloads.setOnClickListener(this);
+        imageSecuredFiles.setOnClickListener(this);imageRecentFiles.setOnClickListener(this); imageConvertFiles.setOnClickListener(this);
+        imageRecycleBin.setOnClickListener(this); imageFavorites.setOnClickListener(this);imagePcFileTransfer.setOnClickListener(this);
+        imageScreenSharing.setOnClickListener(this);
+    }
+
+    public void onClick(View v) {
+        Log.d(TAG, "ID number: "+v.getId());
+        //try to parse the res id to process
+
+        changeImageLike(v.getId());
+    }
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
@@ -87,13 +115,38 @@ public class AddCategoryActivity extends AppCompatActivity {
             Toast.makeText(this, "No Content!", Toast.LENGTH_SHORT).show();
         }
     }
+
     private void checkAllTick(ArrayList<HashMap<String, String>> algorithmList){
         for(int i = 0; i < algorithmList.size(); i++){
             //checkTick(algorithmList.get(i));
+
+            //
         }
     }
     private void initRecyclerView(ArrayList<HashMap<String, String>> algorithmList){
-
+        for(int i = 0; i< algorithmList.size();i++){
+            Log.d(TAG,"The "+i+"th is: "+algorithmList.get(i).get("topic"));
+            //transfer to resId
+            int resId = getResources().getIdentifier(algorithmList.get(i).get("topic"), "id", getPackageName());
+            Log.d(TAG,"The "+i+"th ID is: "+resId);
+            ImageView imageTarget = (ImageView) findViewById(resId);
+            imageTarget.setImageResource(R.drawable.tick);
+            //        Integer integer = (Integer) imageTarget.getTag();
+//            integer = integer == null ? 0 : integer;
+//            switch(integer) {
+//                case R.drawable.tick:
+//                    imageTarget.setImageResource(R.drawable.square);
+//                    imageTarget.setTag(R.drawable.square);
+//                    deleteFavorite(data);//topic is from the imageTarget, --> textTarget --> topic
+//                    break;
+//                case R.drawable.square:
+//                default:
+//                    imageTarget.setImageResource(R.drawable.tick);
+//                    imageTarget.setTag(R.drawable.tick);
+//                    addToFavorite(data);
+//                    break;
+//            }
+        }
     }
     private void checkTick(ImageView image, TextView textView){
         String data = "";
@@ -110,62 +163,59 @@ public class AddCategoryActivity extends AppCompatActivity {
         }
     }
 
-
-    private void changeImageLike(View view, Integer position, ImageView imageTarget){
-        //ImageView imageView =  (ImageView) view.findViewById(R.id.image_discover_like);
-        //assert(R.id.image_discover_like == imageTarget.getId());
-
+    private void changeImageLike(Integer resId){
+        String ResourceIdAsString = getResources().getResourceName(resId);
+        Log.d(TAG, "ID name: "+ResourceIdAsString);
+        // get picture
+        String pack = getPackageName();
+        String data = ResourceIdAsString.replace(pack+":id/","");
+        Log.d(TAG, "ID data name: "+data);
+        //transfer id from image to text
+        ImageView imageTarget =  (ImageView) findViewById(resId);
+        assert(resId == imageTarget.getId());
         Integer integer = (Integer) imageTarget.getTag();
         integer = integer == null ? 0 : integer;
         switch(integer) {
             case R.drawable.tick:
                 imageTarget.setImageResource(R.drawable.square);
                 imageTarget.setTag(R.drawable.square);
-                //deleteFavorite(listClass,position);
+                deleteFavorite(data);//topic is from the imageTarget, --> textTarget --> topic
                 break;
             case R.drawable.square:
             default:
                 imageTarget.setImageResource(R.drawable.tick);
                 imageTarget.setTag(R.drawable.tick);
-                //addToFavorite(listClass,position);
+                addToFavorite(data);
                 break;
         }
     }
 
-    private void deleteFavorite(List<ClassBean> listClassBean, Integer position) {
-        String topic = listClassBean.get(position).getTitle();
-        MeFavoriteHistoryRepo repo = new MeFavoriteHistoryRepo(mContext);
-        MeFavoriteHistory dbFavorite = repo.getColumnByTopic(topic);
+
+    private void deleteFavorite(String topic) {
+        //String topic = listClassBean.get(position).getTitle();
+        CategoryRepo repo = new CategoryRepo(this);
+        Category dbFavorite = repo.getColumnByTopic(topic);
         Log.d(TAG, "delete:"+topic);
         repo.delete(dbFavorite.dbId);
-        Toast.makeText(mContext, "删除", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "删除", Toast.LENGTH_SHORT).show();
     }
 
-    private void addToFavorite(List<ClassBean> listClassBean, Integer position) {
-        String title = listClassBean.get(position).getTitle(),
-                lectureId = listClassBean.get(position).getId(),
-                coverImageUri = listClassBean.get(position).getCoverImageUri(),
-                teacher = listClassBean.get(position).getTeacherName();
-        String topic = listClassBean.get(position).getTitle();
-        MeFavoriteHistoryRepo repo = new MeFavoriteHistoryRepo(mContext);
-        MeFavoriteHistory dbFavorite = repo.getColumnByTopic(topic);
+    private void addToFavorite(String topic) {
+        CategoryRepo repo = new CategoryRepo(this);
+        Category category = repo.getColumnByTopic(topic);
         try {
-            if (dbFavorite.topic.equals(topic)) {
-                repo.update(dbFavorite);
-                Toast.makeText(mContext, "没有内容", Toast.LENGTH_SHORT).show();
+            if (category.topic.equals(topic)) {
+                repo.update(category);
+                Toast.makeText(this, "没有内容", Toast.LENGTH_SHORT).show();
             }
         } catch (Exception e) {
-            dbFavorite.time = 25;
-            dbFavorite.content = "";
-            dbFavorite.topic = topic;
-            dbFavorite.title = title;
-            dbFavorite.lectureId = lectureId;
-            dbFavorite.coverImageUri = coverImageUri;
-            dbFavorite.teacher = teacher;
-            dbFavorite.dbId = _algorithm_id;
-            _algorithm_id = repo.insert(dbFavorite);
-            Log.d(TAG, "add:"+dbFavorite.topic);
-            Toast.makeText(mContext, "收藏", Toast.LENGTH_SHORT).show();
+            category.time = 25;
+            category.content = "";
+            category.topic = topic;
+            category.dbId = _algorithm_id;
+            _algorithm_id = repo.insert(category);
+            Log.d(TAG, "add:"+category.topic);
+            Toast.makeText(this, "收藏", Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
     }
