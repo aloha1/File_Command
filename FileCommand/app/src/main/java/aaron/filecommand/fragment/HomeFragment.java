@@ -72,7 +72,6 @@ public class HomeFragment extends Fragment {
     }
 
     private void initView(View view){
-        initRecycler(view);
         imageAnalyzer = view.findViewById(R.id.image_home_analyzer);
         imageAnalyzer.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,9 +82,9 @@ public class HomeFragment extends Fragment {
         });
     }
 
-    private void initRecycler(View view){
+    private void initRecycler(View view, List<ClassBean> listTemp){
         mRecyclerView = view.findViewById(R.id.recyclerview_home);
-        homeAdapter = new HomeAdapter(getActivity(),listClass);
+        homeAdapter = new HomeAdapter(getActivity(),listTemp);
 
         mRecyclerView.setAdapter(homeAdapter);
         mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));
@@ -111,6 +110,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void initRecyclerView(ArrayList<HashMap<String, String>> algorithmList, View view){
+        List<ClassBean> listTemp = new ArrayList<>();
         for(int i = 0; i< algorithmList.size();i++){
             String data = algorithmList.get(i).get("topic");
             Log.d(TAG,"The "+i+"th is: "+data);
@@ -121,13 +121,21 @@ public class HomeFragment extends Fragment {
             ClassBean classBean = new ClassBean();
             classBean.setTagString(data.replace("image_tick_",""));
             classBean.setCoverImageUri(data);
-            listClass.add(classBean);
-            initRecycler(view);
+            listTemp.add(classBean);
+            initRecycler(view, listTemp);
         }
     }
     @Override
     public void onStop() {
         super.onStop();
     }
-
+    @Override
+    public void onResume() {
+        listAll(getView());
+        super.onResume();
+    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+    }
 }

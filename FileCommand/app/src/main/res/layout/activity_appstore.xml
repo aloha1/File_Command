@@ -29,7 +29,8 @@
                 android:scaleType="fitXY"
                 android:layout_centerVertical="true"
                 android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true" />
+                android:layout_alignParentLeft="true"
+                android:src="@drawable/file_commander"/>
             <TextView
                 android:id="@+id/text_appstore_title"
                 android:layout_width="match_parent"
