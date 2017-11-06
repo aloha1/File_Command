@@ -18,10 +18,6 @@ import aaron.filecommand.R;
 import aaron.filecommand.base.BaseActivity;
 
 
-/**
- * Created by jili on 8/17/17.
- */
-
 public class SplashActivity extends BaseActivity {
 
     private ImageView imgSplash;

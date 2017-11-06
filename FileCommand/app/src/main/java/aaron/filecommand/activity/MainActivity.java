@@ -25,6 +25,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+
 import java.util.List;
 
 import aaron.filecommand.R;
@@ -48,12 +53,24 @@ public class MainActivity extends AppCompatActivity
 
     private int _algorithm_id = 0;
 
+    private AdView mAdView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initNavigation();
         initFragment();
+        initAds();
+    }
+    protected void initAds(){
+        MobileAds.initialize(getApplicationContext(),
+                "ca-app-pub-3456168518371304/2700959193");
+
+        mAdView =   (AdView)  findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+
     }
 
     private void initNavigation(){
