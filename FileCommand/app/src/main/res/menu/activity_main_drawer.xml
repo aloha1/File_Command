@@ -5,19 +5,19 @@
         <item
             android:id="@+id/nav_go_premium"
             android:icon="@drawable/premium"
-            android:title="Go premium" />
+            android:title="@string/text_tick_go_premium" />
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/home"
-            android:title="Home" />
+            android:title="@string/text_tick_home" />
         <item
             android:id="@+id/nav_recent_files"
             android:icon="@drawable/recent"
-            android:title="Recent Files" />
+            android:title="@string/text_tick_recent_files"/>
         <item
             android:id="@+id/nav_favorite"
             android:icon="@drawable/favorite"
-            android:title="Favorites" />
+            android:title="@string/text_tick_favorites" />
     </group>
 
     <item android:title="">
@@ -25,11 +25,11 @@
             <item
                 android:id="@+id/nav_internal_shared_storage"
                 android:icon="@drawable/internal_storage"
-                android:title="Internal Shared Storage" />
+                android:title="@string/text_internal_shared_storage" />
             <item
                 android:id="@+id/nav_ftp"
                 android:icon="@drawable/ftp"
-                android:title="FTP" />
+                android:title="@string/text_tick_ftp" />
         </menu>
     </item>
     <item android:title="">
@@ -37,31 +37,35 @@
             <item
             android:id="@+id/nav_pictures"
             android:icon="@drawable/pictures"
-            android:title="Pictures" />
+            android:title="@string/text_tick_picture" />
             <item
                 android:id="@+id/nav_music"
                 android:icon="@drawable/music"
-                android:title="Music" />
+                android:title="@string/text_tick_music" />
             <item
                 android:id="@+id/nav_videos"
                 android:icon="@drawable/videos"
-                android:title="Videos" />
+                android:title="@string/text_tick_videos" />
             <item
                 android:id="@+id/nav_documents"
                 android:icon="@drawable/documents"
-                android:title="Documents" />
+                android:title="@string/text_tick_documents" />
             <item
                 android:id="@+id/nav_achieves"
                 android:icon="@drawable/archives"
-                android:title="Achieves" />
+                android:title="@string/text_tick_archives" />
             <item
                 android:id="@+id/nav_downloads"
                 android:icon="@drawable/download"
-                android:title="Downloads" />
+                android:title="@string/text_tick_downloads" />
             <item
                 android:id="@+id/nav_settings"
                 android:icon="@drawable/settings"
-                android:title="Settings" />
+                android:title="@string/action_settings" />
+            <item
+                android:id="@+id/nav_language"
+                android:icon="@drawable/premium2"
+                android:title="@string/text_tick_language" />
         </menu>
     </item>
 </menu>

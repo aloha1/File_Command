@@ -81,6 +81,7 @@ public class AddCategoryActivity extends AppCompatActivity implements View.OnCli
     public void onClick(View v) {
         changeImageLike(v.getId());
     }
+
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
@@ -189,7 +190,7 @@ public class AddCategoryActivity extends AppCompatActivity implements View.OnCli
         try {
             if (category.topic.equals(topic)) {
                 repo.update(category);
-                Toast.makeText(this, "没有内容", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.no_content, Toast.LENGTH_SHORT).show();
             }
         } catch (Exception e) {
             category.time = 25;
@@ -198,7 +199,6 @@ public class AddCategoryActivity extends AppCompatActivity implements View.OnCli
             category.dbId = _algorithm_id;
             _algorithm_id = repo.insert(category);
             Log.d(TAG, "add:"+category.topic);
-            Toast.makeText(this, "收藏", Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
     }

@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">文件命令</string>
+
+    <string name="navigation_drawer_open">打开导航抽屉</string>
+    <string name="navigation_drawer_close">关闭导航抽屉</string>
+
+    <string name="action_settings">设置</string>
+
+    <!--category-->
+    <string-array name="category">
+        <item>图片</item>
+    </string-array>
+
+    <string name="our_recommend_app">我们的推荐应用</string>
+    <string name="title_add_category">添加类别</string>
+    
+    <!--File Command-->
+    <string name="file_command_title">文件命令</string>
+    <string name="file_command_content">文件命令是一个功能丰富，功能强大的文件管理器，可以让你处理任何文件
+        Android设备或云存储通过一个干净和直观的界面。您可以单独处理图片库，音乐，视频，
+        文件，以及只需点击几下即可重命名，删除，移动，压缩，转换和发送文件。另外，通过我们的文件转换器功能，
+        您可以轻松地将您的文件转换为1200多种不同格式之一。 </string>
+    <string name="ad_unit_id_algo">ca-app-pub-3456168518371304/2700959193</string>
+    <string name="click_to_exit">再次点击退出</string>
+    <!--data base-->
+    <string name="text_tick_go_premium">去高级</string>
+    <string name="text_tick_home">主页</string>
+    <string name="text_tick_picture">图片</string>
+    <string name="text_internal_shared_storage">内部共享存储</string>
+    <string name="text_tick_ftp">FTP</string>
+    <string name="text_tick_music">音乐</string>
+    <string name="text_tick_videos">影片</string>
+    <string name="text_tick_documents">文件</string>
+    <string name="text_tick_archives">档案</string>
+    <string name="text_tick_downloads">下载</string>
+    <string name="text_tick_secured_files">安全的文件</string>
+    <string name="text_tick_recent_files">最近的文件</string>
+    <string name="text_tick_convert_files">转换文件</string>
+    <string name="text_tick_recycle_bin">回收站</string>
+    <string name="text_tick_favorites">最爱</string>
+    <string name="text_tick_pc_file_transfer">PC文件传输</string>
+    <string name="text_tick_screen_sharing">屏幕共享</string>
+
+    <string name="text_tick_language">语言</string>
+    <string name="no_content">无内容</string>
+</resources>

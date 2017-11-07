@@ -169,6 +169,9 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_ftp) {
 
+        }else if (id == R.id.nav_language) {
+            Intent intent = new Intent(MainActivity.this, LanguageActivity.class);
+            startActivity(intent);
         }else{
 
         }
@@ -198,7 +201,7 @@ public class MainActivity extends AppCompatActivity
         try {
             if (category.topic.equals(topic)) {
                 repo.update(category);
-                Toast.makeText(this, "没有内容", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.no_content, Toast.LENGTH_SHORT).show();
             }
         } catch (Exception e) {
             category.time = 25;
@@ -207,7 +210,7 @@ public class MainActivity extends AppCompatActivity
             category.dbId = _algorithm_id;
             _algorithm_id = repo.insert(category);
             Log.d(TAG, "add:"+category.topic);
-            Toast.makeText(this, "收藏", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "收藏", Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
     }
@@ -264,9 +267,11 @@ public class MainActivity extends AppCompatActivity
             } else {
                 if (doubleClick) {
                     finish();
+//                    Intent intent = new Intent(MainActivity.this, InterAd_Activity.class);
+//                    startActivity(intent);
                 }
                 this.doubleClick = true;
-                Toast.makeText(this, "再次点击退出", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.click_to_exit, Toast.LENGTH_SHORT).show();
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {

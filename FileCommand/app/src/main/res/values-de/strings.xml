@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">Dateibefehl</string>
+
+    <string name="navigation_drawer_open">Navigationsschublade öffnen</string>
+    <string name="navigation_drawer_close">Navigationsleiste schließen</string>
+
+    <string name="action_settings">Einstellungen</string>
+
+    <!--category-->
+    <string-array name="category">
+        <item>Bilder</item>
+    </string-array>
+
+    <string name="our_recommend_app">Unsere empfohlene App</string>
+    <string name="title_add_category">Kategorie hinzufügen</string>
+    
+    <!--File Command-->
+    <string name="file_command_title">Dateibefehl</string>
+    <string name="file_command_content">File Commander ist ein funktionsreicher, leistungsfähiger Dateimanager, mit dem Sie jede Datei auf Ihrem
+        Android-Gerät oder Cloud-Speicher über eine saubere und intuitive Benutzeroberfläche. Sie können Bibliotheken von Bildern, Musik, Videos,
+        Dokumente, sowie umbenennen, löschen, verschieben, zip, konvertieren und senden Sie Dateien mit nur wenigen Fingertipps. Auch mit unserer Dateikonverter-Funktion
+        Sie können Ihre Dateien ganz einfach in eines von mehr als 1200 verschiedenen Formaten konvertieren. </string>
+    <string name="ad_unit_id_algo">ca-app-pub-3456168518371304/2700959193</string>
+    <string name="click_to_exit">Zum Beenden erneut klicken</string>
+    <!--data base-->
+    <string name="text_tick_go_premium">Premium gehen</string>
+    <string name="text_tick_home">Zuhause</string>
+    <string name="text_tick_picture">Bild</string>
+    <string name="text_internal_shared_storage">Interner gemeinsam genutzter Speicher</string>
+    <string name="text_tick_ftp">FTP</string>
+    <string name="text_tick_music">Musik</string>
+    <string name="text_tick_videos">Videos</string>
+    <string name="text_tick_documents">Unterlagen</string>
+    <string name="text_tick_archives">Archiv</string>
+    <string name="text_tick_downloads">Downloads</string>
+    <string name="text_tick_secured_files">Gesicherte Dateien</string>
+    <string name="text_tick_recent_files">Letzte Dateien</string>
+    <string name="text_tick_convert_files">Konvertieren von Dateien</string>
+    <string name="text_tick_recycle_bin">Papierkorb</string>
+    <string name="text_tick_favorites">Favoriten</string>
+    <string name="text_tick_pc_file_transfer">PC-Dateiübertragung</string>
+    <string name="text_tick_screen_sharing">Bildschirm teilen</string>
+
+    <string name="text_tick_language">Sprache</string>
+    <string name="no_content">Kein Inhalt</string>
+</resources>
