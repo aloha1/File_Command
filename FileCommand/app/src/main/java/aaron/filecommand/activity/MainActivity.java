@@ -45,6 +45,7 @@ import java.util.List;
 import aaron.filecommand.R;
 import aaron.filecommand.dao.Category;
 import aaron.filecommand.dao.CategoryRepo;
+import aaron.filecommand.fragment.DocumentFragment;
 import aaron.filecommand.fragment.HomeFragment;
 import aaron.filecommand.fragment.MusicFragment;
 import aaron.filecommand.fragment.PhotoFragment;
@@ -95,6 +96,7 @@ public class MainActivity extends AppCompatActivity
     private void initNavigation(){
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         toolbarTitle = (TextView) findViewById(R.id.text_toolbar_title);
         imageToolbar = (ImageView) findViewById(R.id.imgae_toolbar_title);
 
@@ -137,6 +139,7 @@ public class MainActivity extends AppCompatActivity
 
     private void setToolbarHome(){
         toolbarTitle.setText(R.string.text_tick_home);
+        imageToolbar.setVisibility(View.VISIBLE);
         imageToolbar.setImageResource(R.drawable.bag_white);
         imageToolbar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -145,6 +148,11 @@ public class MainActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
+    }
+
+    private void clearToolbarHome(){
+        toolbarTitle.setText(R.string.text_tick_home);
+        imageToolbar.setVisibility(View.GONE);
     }
 
     @Override
@@ -174,21 +182,28 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
+        clearToolbarHome();
         if (id == R.id.nav_go_premium) {
             // Handle the camera action
 
-        } else if (id == R.id.nav_pictures) {
+        } else if (id == R.id.nav_home) {
+            clearBackStack();
+            initFragment();
+        }else if (id == R.id.nav_pictures) {
             addNewFragment(new PhotoFragment());
             toolbarTitle.setText(R.string.text_tick_picture);
+        }else if (id == R.id.nav_documents) {
+            mStorage = new Storage(this);
+            String dataContent = mStorage.getInternalFilesDirectory();
+            Log.d(TAG, dataContent);
+            addDocumentFragment(dataContent);
+            toolbarTitle.setText(R.string.text_tick_documents);
         }else if (id == R.id.nav_videos) {
-//            addNewFragment(new VideoFragment());
             toolbarTitle.setText(R.string.text_tick_videos);
+            addNewFragment(new VideoFragment());
         }else if (id == R.id.nav_music) {
             addNewFragment(new MusicFragment());
             toolbarTitle.setText(R.string.text_tick_music);
-        }else if (id == R.id.nav_home) {
-            initFragment();
         } else if (id == R.id.nav_recent_files) {
             toolbarTitle.setText(R.string.text_tick_recent_files);
         } else if (id == R.id.nav_favorite) {
@@ -209,19 +224,33 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    public void addDocumentFragment(String data){
+        DocumentFragment fragment = new DocumentFragment();
+        getFragmentManager().beginTransaction().replace(R.id.container, fragment, "SubFragment")
+                .addToBackStack("SubFragment").commit();
+        fragment.dataFlow(data);
+    }
+
     public void addNewFragment(Fragment fragment){
         getFragmentManager().beginTransaction().replace(R.id.container, fragment, "SubFragment")
                 .addToBackStack("SubFragment").commit();
     }
-
     private void addToHome(){
-        addToFavorite("image_tick_picture");
-        addToFavorite("image_tick_music");
-        addToFavorite("image_tick_documents");
-        addToFavorite("image_tick_secured_files");
-        addToFavorite("image_tick_pc_files_transfer");
         addToFavorite("image_tick_favorites");
+        addToFavorite("image_tick_documents");
+        addToFavorite("image_tick_videos");
+        addToFavorite("image_tick_archives");
+        addToFavorite("image_tick_downloads");
         addToFavorite("image_tick_recent_files");
+        addToFavorite("image_tick_convert_files");
+    }
+
+    public void clearBackStack() {
+        FragmentManager manager = getFragmentManager();
+        if (manager.getBackStackEntryCount() > 0) {
+            FragmentManager.BackStackEntry first = manager.getBackStackEntryAt(0);
+            manager.popBackStack(first.getId(), FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        }
     }
     private void addToFavorite(String topic) {
         CategoryRepo repo = new CategoryRepo(this);

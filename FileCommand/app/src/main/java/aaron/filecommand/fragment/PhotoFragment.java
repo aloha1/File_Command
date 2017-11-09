@@ -72,9 +72,6 @@ public class PhotoFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
 
         listImage = new ArrayList<>();
-        Log.d(TAG,getAllShownImagesPath(getActivity()).get(0));
-        //// TODO: 11/8/2017
-        //solve nullpointer exception
         listImage = getAllShownImagesPath(getActivity());
         PhotoAdapter adapter = new PhotoAdapter(getActivity(), listImage);
         recyclerView.setAdapter(adapter);

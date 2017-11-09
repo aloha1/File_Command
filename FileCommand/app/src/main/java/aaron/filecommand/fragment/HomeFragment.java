@@ -46,7 +46,7 @@ public class HomeFragment extends Fragment {
     private Context mContext;
     private SearchView searchView;
     private EditText editText;
-    private ImageView imageViewSearch, imageAnalyzer;
+    private ImageView imageEditor, imageAnalyzer;
     public HomeFragment(){
         mContext = getActivity();
     }
@@ -76,7 +76,8 @@ public class HomeFragment extends Fragment {
 
     private void initView(View view){
         imageAnalyzer = view.findViewById(R.id.image_home_analyzer);
-        imageAnalyzer.setOnClickListener(new View.OnClickListener() {
+        imageEditor = view.findViewById(R.id.image_home_editor);
+        imageEditor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), AddCategoryActivity.class);

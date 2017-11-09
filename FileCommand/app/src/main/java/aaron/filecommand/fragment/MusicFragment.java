@@ -2,6 +2,7 @@ package aaron.filecommand.fragment;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
@@ -70,35 +71,36 @@ public class MusicFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
 
         listImage = new ArrayList<>();
-        Log.d(TAG,getAllShownImagesPath(getActivity()).get(0));
-        listImage = getAllShownImagesPath(getActivity());
+        Log.d(TAG,getsonglist().get(0));
+        listImage = getsonglist();
         PhotoAdapter adapter = new PhotoAdapter(getActivity(), listImage);
         recyclerView.setAdapter(adapter);
     }
-    private ArrayList<String> getAllShownImagesPath(Activity activity) {
-        Uri uri;
-        Cursor cursor;
-        int column_index_data, column_index_folder_name;
-        ArrayList<String> listOfAllImages = new ArrayList<String>();
-        String absolutePathOfImage = null;
-        uri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
 
-        String[] projection = { MediaStore.MediaColumns.DATA,
-                MediaStore.Audio.Media.CONTENT_TYPE };
+    List<String> getsonglist() {
 
-        cursor = activity.getContentResolver().query(uri, projection, null,
-                null, null);
+        List<String> songlist = new ArrayList<>();
+        ContentResolver contentResolver = getActivity().getContentResolver();
+        Uri uri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
 
-        column_index_data = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA);
-        column_index_folder_name = cursor
-                .getColumnIndexOrThrow(MediaStore.Audio.Media.CONTENT_TYPE);
-        while (cursor.moveToNext()) {
-            absolutePathOfImage = cursor.getString(column_index_data);
+        Cursor cursor = contentResolver.query(uri, null, null, null, null);
+        if (cursor == null) {
+            // query failed, handle error.
+        } else if (!cursor.moveToFirst()) {
+            // no media on the device
+        } else {
+            do {
 
-            listOfAllImages.add(absolutePathOfImage);
+                String fullPath = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DATA));
+                // ...process entry...
+                Log.e("Full Path : ", fullPath);
+
+                songlist.add(fullPath);
+            } while (cursor.moveToNext());
         }
-        return listOfAllImages;
+        return songlist;
     }
+
     @Override
     public void onStop() {
         super.onStop();
