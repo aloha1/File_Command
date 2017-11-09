@@ -38,7 +38,7 @@ import aaron.filecommand.model.ClassBean;
  */
 
 public class HomeFragment extends Fragment {
-    String TAG = "HistoryFragment";
+    String TAG = "HomeFragment";
     private SharedPreferences sharedPrefs;
     RecyclerView mRecyclerView;
     private HomeAdapter homeAdapter;
@@ -51,9 +51,12 @@ public class HomeFragment extends Fragment {
         mContext = getActivity();
     }
     private ItemTouchHelper mItemTouchHelper;
+    private int mTreeSteps = 1;
+
     public void dataFlow(){
 
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 

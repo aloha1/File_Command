@@ -1,24 +1,32 @@
 package aaron.filecommand.activity;
 
+import android.Manifest;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.content.FileProvider;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.ThemedSpinnerAdapter;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.MimeTypeMap;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -30,12 +38,20 @@ import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 
+import java.io.File;
+import java.util.Collections;
 import java.util.List;
 
 import aaron.filecommand.R;
 import aaron.filecommand.dao.Category;
 import aaron.filecommand.dao.CategoryRepo;
 import aaron.filecommand.fragment.HomeFragment;
+import aaron.filecommand.fragment.MusicFragment;
+import aaron.filecommand.fragment.PhotoFragment;
+import aaron.filecommand.fragment.VideoFragment;
+import aaron.filecommand.model.Storage;
+
+import static aaron.filecommand.activity.helper.Helper.fileExt;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -43,6 +59,7 @@ public class MainActivity extends AppCompatActivity
         FIRST_TIME, FIRST_TIME_VERSION, NORMAL;
     }
     private static final String LAST_APP_VERSION = "last_app_version";
+    private static final int PERMISSION_REQUEST_CODE = 1000;
 
     private String TAG  = "MainActivity";
     private Toolbar toolbar;
@@ -52,9 +69,11 @@ public class MainActivity extends AppCompatActivity
     private boolean doubleClick = false;
 
     private int _algorithm_id = 0;
-
+    private int mTreeSteps = 0;
     private AdView mAdView;
+    private TextView mPathView;
 
+    private Storage mStorage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -117,7 +136,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void setToolbarHome(){
-        toolbarTitle.setText("Home");
+        toolbarTitle.setText(R.string.text_tick_home);
         imageToolbar.setImageResource(R.drawable.bag_white);
         imageToolbar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -159,10 +178,19 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_go_premium) {
             // Handle the camera action
 
-        } else if (id == R.id.nav_home) {
-            setToolbarHome();
+        } else if (id == R.id.nav_pictures) {
+            addNewFragment(new PhotoFragment());
+            toolbarTitle.setText(R.string.text_tick_picture);
+        }else if (id == R.id.nav_videos) {
+//            addNewFragment(new VideoFragment());
+            toolbarTitle.setText(R.string.text_tick_videos);
+        }else if (id == R.id.nav_music) {
+            addNewFragment(new MusicFragment());
+            toolbarTitle.setText(R.string.text_tick_music);
+        }else if (id == R.id.nav_home) {
+            initFragment();
         } else if (id == R.id.nav_recent_files) {
-            toolbarTitle.setText("Recent");
+            toolbarTitle.setText(R.string.text_tick_recent_files);
         } else if (id == R.id.nav_favorite) {
 
         } else if (id == R.id.nav_internal_shared_storage) {
@@ -252,8 +280,57 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    private void checkPermission() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager
+                .PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                    PERMISSION_REQUEST_CODE);
+        }
+    }
+    private String getCurrentPath() {
+        return mPathView.getText().toString();
+    }
+
+    private void showFiles(String path) {
+        mPathView.setText(path);
+        List<File> files = mStorage.getFiles(path);
+    }
+
+    private String getPreviousPath() {
+        String path = getCurrentPath();
+        int lastIndexOf = path.lastIndexOf(File.separator);
+        if (lastIndexOf < 0) {
+            Toast.makeText(this,"Can't go anymore", Toast.LENGTH_SHORT).show();
+            return getCurrentPath();
+        }
+        return path.substring(0, lastIndexOf);
+    }
+
+    public void clickFile(File file){
+        try {
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            String mimeType =  MimeTypeMap.getSingleton().getMimeTypeFromExtension(fileExt(file.getAbsolutePath()));
+            Uri apkURI = FileProvider.getUriForFile(
+                    this,
+                    getApplicationContext()
+                            .getPackageName() + ".provider", file);
+            intent.setDataAndType(apkURI, mimeType);
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            startActivity(intent);
+        } catch (ActivityNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
     @Override
     public void onBackPressed() {
+        if (mTreeSteps > 0) {
+            String path = getPreviousPath();//exit to last layer
+            mTreeSteps--;
+            showFiles(path);//show this layer
+            return;
+        }
+
         FragmentManager fm = getFragmentManager();
         Fragment current = fm.findFragmentById(R.id.container);
 
@@ -261,14 +338,13 @@ public class MainActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
+
+
             if (fm.getBackStackEntryCount() > 1) {
                 fm.popBackStack();
-
             } else {
                 if (doubleClick) {
                     finish();
-//                    Intent intent = new Intent(MainActivity.this, InterAd_Activity.class);
-//                    startActivity(intent);
                 }
                 this.doubleClick = true;
                 Toast.makeText(this, R.string.click_to_exit, Toast.LENGTH_SHORT).show();

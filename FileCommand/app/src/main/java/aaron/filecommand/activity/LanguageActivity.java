@@ -27,7 +27,7 @@ public class LanguageActivity extends AppCompatActivity  implements View.OnClick
     private String TAG = "LanguageActivity";
     private Toolbar toolbar;
     private TextView toolbarTitle, textTitle, textContent;
-    private ImageView imageEnglish, imageChinese, imageJapanese;
+    private ImageView imageEnglish, imageArabic,imageGerman,imageSpanish,imageFrench,imageChinese, imageJapanese;
     private Configuration config;
     private Resources resources;
     private DisplayMetrics dm;
@@ -44,8 +44,14 @@ public class LanguageActivity extends AppCompatActivity  implements View.OnClick
         config = resources.getConfiguration();
         imageEnglish = (ImageView) findViewById(R.id.image_tick_english);
         imageChinese = (ImageView) findViewById(R.id.image_tick_chinese);
+        imageArabic = (ImageView) findViewById(R.id.image_tick_arabic);
+        imageGerman = (ImageView) findViewById(R.id.image_tick_german);
+        imageSpanish = (ImageView) findViewById(R.id.image_tick_spanish);
+        imageFrench = (ImageView) findViewById(R.id.image_tick_french);
         imageJapanese = (ImageView) findViewById(R.id.image_tick_japanese);
         imageEnglish.setOnClickListener(this);imageChinese.setOnClickListener(this);imageJapanese.setOnClickListener(this);
+        imageArabic.setOnClickListener(this);imageGerman.setOnClickListener(this);imageSpanish.setOnClickListener(this);
+        imageFrench.setOnClickListener(this);
     }
 
     public void onClick(View v) {
@@ -61,6 +67,24 @@ public class LanguageActivity extends AppCompatActivity  implements View.OnClick
                 break;
             case R.id.image_tick_japanese:
                 config.locale = Locale.JAPAN;
+                resources.updateConfiguration(config, dm);
+                break;
+            case R.id.image_tick_arabic:
+                Locale arabic = new Locale("ar", "AR");
+                config.locale = arabic;
+                resources.updateConfiguration(config, dm);
+                break;
+            case R.id.image_tick_french:
+                config.locale = Locale.FRENCH;
+                resources.updateConfiguration(config, dm);
+                break;
+            case R.id.image_tick_spanish:
+                Locale spanish = new Locale("es", "ES");
+                config.locale = spanish;
+                resources.updateConfiguration(config, dm);
+                break;
+            case R.id.image_tick_german:
+                config.locale = Locale.GERMAN;
                 resources.updateConfiguration(config, dm);
                 break;
             default:

@@ -33,6 +33,78 @@
                     android:text="English"/>
             </LinearLayout>
 
+            <LinearLayout android:id="@+id/layout_tick_arabic"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/image_tick_arabic"
+                    android:layout_width="@dimen/digit_big_height"
+                    android:layout_height="@dimen/digit_big_height"
+                    android:layout_margin="@dimen/activity_margin_smaller"
+                    android:src="@drawable/square"/>
+                <TextView
+                    android:id="@+id/text_tick_arabic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/activity_margin_smaller"
+                    android:text="عربى"/>
+            </LinearLayout>
+
+            <LinearLayout android:id="@+id/layout_tick_german"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/image_tick_german"
+                    android:layout_width="@dimen/digit_big_height"
+                    android:layout_height="@dimen/digit_big_height"
+                    android:layout_margin="@dimen/activity_margin_smaller"
+                    android:src="@drawable/square"/>
+                <TextView
+                    android:id="@+id/text_tick_german"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/activity_margin_smaller"
+                    android:text="Deutsche"/>
+            </LinearLayout>
+
+            <LinearLayout android:id="@+id/layout_tick_spanish"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/image_tick_spanish"
+                    android:layout_width="@dimen/digit_big_height"
+                    android:layout_height="@dimen/digit_big_height"
+                    android:layout_margin="@dimen/activity_margin_smaller"
+                    android:src="@drawable/square"/>
+                <TextView
+                    android:id="@+id/text_tick_spanish"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/activity_margin_smaller"
+                    android:text="Español"/>
+            </LinearLayout>
+
+            <LinearLayout android:id="@+id/layout_tick_french"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/image_tick_french"
+                    android:layout_width="@dimen/digit_big_height"
+                    android:layout_height="@dimen/digit_big_height"
+                    android:layout_margin="@dimen/activity_margin_smaller"
+                    android:src="@drawable/square"/>
+                <TextView
+                    android:id="@+id/text_tick_french"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/activity_margin_smaller"
+                    android:text="français"/>
+            </LinearLayout>
+
             <LinearLayout android:id="@+id/layout_tick_chinese"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
