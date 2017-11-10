@@ -26,7 +26,7 @@
     <string name="text_tick_go_premium">Hazte Premium</string>
     <string name="text_tick_home">Homere</string>
     <string name="text_tick_picture">Imagen</string>
-    <string name="text_internal_shared_storage">Almacenamiento interno compartido</string>
+    <string name="text_tick_internal_shared_storage">Almacenamiento interno compartido</string>
     <string name="text_tick_ftp">FTP</string>
     <string name="text_tick_music">Música</string>
     <string name="text_tick_videos">Videos</string>

@@ -26,7 +26,7 @@
     <string name="text_tick_go_premium">احصل على الاشتراك الرئيسي</string>
     <string name="text_tick_home">الصفحة الرئيسية</string>
     <string name="text_tick_picture">صورة</string>
-    <string name="text_internal_shared_storage">التخزين المشترك الداخلي</string>
+    <string name="text_tick_internal_shared_storage">التخزين المشترك الداخلي</string>
     <string name="text_tick_ftp">FTP</string>
     <string name="text_tick_music">موسيقى</string>
     <string name="text_tick_videos">أشرطة فيديو</string>

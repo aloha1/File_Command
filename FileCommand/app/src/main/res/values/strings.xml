@@ -13,7 +13,8 @@
 
     <string name="our_recommend_app">Our Recommended App</string>
     <string name="title_add_category">Add Category</string>
-    
+    <string name="remove_ads">Remove Ads</string>
+
     <!--File Command-->
     <string name="file_command_title">File Command</string>
     <string name="file_command_content">File Commander is a feature-rich, powerful file manager that allows you to handle any file on your
@@ -26,7 +27,7 @@
     <string name="text_tick_go_premium">Go Premium</string>
     <string name="text_tick_home">Home</string>
     <string name="text_tick_picture">Picture</string>
-    <string name="text_internal_shared_storage">Internal Shared Storage</string>
+    <string name="text_tick_internal_shared_storage">Internal Shared Storage</string>
     <string name="text_tick_ftp">FTP</string>
     <string name="text_tick_music">Music</string>
     <string name="text_tick_videos">Videos</string>

@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -27,6 +28,7 @@ import java.util.List;
 
 import aaron.filecommand.R;
 import aaron.filecommand.activity.AddCategoryActivity;
+import aaron.filecommand.activity.InterAd_Activity;
 import aaron.filecommand.adapter.HomeAdapter;
 import aaron.filecommand.adapter.helper.SimpleItemTouchHelperCallback;
 import aaron.filecommand.dao.Category;
@@ -81,6 +83,14 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), AddCategoryActivity.class);
+                getActivity().startActivity(intent);
+            }
+        });
+        CardView cardView = view.findViewById(R.id.card_normal);
+        cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), InterAd_Activity.class);
                 getActivity().startActivity(intent);
             }
         });

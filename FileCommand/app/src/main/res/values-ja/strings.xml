@@ -26,7 +26,7 @@
     <string name="text_tick_go_premium">行くプレミアム</string>
     <string name="text_tick_home">ホーム</string>
     <string name="text_tick_picture">画像</string>
-    <string name="text_internal_shared_storage">内部共有ストレージ</string>
+    <string name="text_tick_internal_shared_storage">内部共有ストレージ</string>
     <string name="text_tick_ftp">FTP</string>
     <string name="text_tick_music">音楽</string>
     <string name="text_tick_videos">ビデオ</string>

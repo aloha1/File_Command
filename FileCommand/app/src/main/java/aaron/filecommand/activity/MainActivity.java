@@ -132,14 +132,11 @@ public class MainActivity extends AppCompatActivity
 
         switch (checkAppStart()) {
             case NORMAL:
-                // We don't want to get on the user's nerves
                 break;
             case FIRST_TIME_VERSION:
-                // TODO show what's new
                 addToHome();
                 break;
             case FIRST_TIME:
-                // TODO show a tutorial
                 addToHome();
                 break;
             default:
@@ -165,10 +162,6 @@ public class MainActivity extends AppCompatActivity
         });
     }
 
-    private void clearToolbarHome(){
-        imageToolbar.setVisibility(View.GONE);
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -187,7 +180,6 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -201,7 +193,9 @@ public class MainActivity extends AppCompatActivity
         imageToolbar.setVisibility(View.INVISIBLE);
         imageToolbar.setImageResource(R.drawable.bag_white);
         if (id == R.id.nav_go_premium) {
-            // Handle the camera action
+            initFragment();
+            Intent intent = new Intent(MainActivity.this, GoPremiumActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_home) {
             initFragment();
         }else if (id == R.id.nav_pictures) {
@@ -222,12 +216,13 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_recent_files) {
             toolbarTitle.setText(R.string.text_tick_recent_files);
         } else if (id == R.id.nav_favorite) {
-
+            toolbarTitle.setText(R.string.text_tick_favorites);
         } else if (id == R.id.nav_internal_shared_storage) {
-
+            toolbarTitle.setText(R.string.text_tick_internal_shared_storage);
         } else if (id == R.id.nav_ftp) {
-
+            toolbarTitle.setText(R.string.text_tick_ftp);
         }else if (id == R.id.nav_language) {
+            initFragment();
             Intent intent = new Intent(MainActivity.this, LanguageActivity.class);
             startActivity(intent);
         }else{

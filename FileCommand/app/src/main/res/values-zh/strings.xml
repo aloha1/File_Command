@@ -26,7 +26,7 @@
     <string name="text_tick_go_premium">去高级</string>
     <string name="text_tick_home">主页</string>
     <string name="text_tick_picture">图片</string>
-    <string name="text_internal_shared_storage">内部共享存储</string>
+    <string name="text_tick_internal_shared_storage">内部共享存储</string>
     <string name="text_tick_ftp">FTP</string>
     <string name="text_tick_music">音乐</string>
     <string name="text_tick_videos">影片</string>

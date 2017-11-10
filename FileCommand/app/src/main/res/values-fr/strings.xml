@@ -25,7 +25,7 @@
     <string name="text_tick_go_premium">Passer en Premium</string>
     <string name="text_tick_home">Accueil</string>
     <string name="text_tick_picture">Photo</string>
-    <string name="text_internal_shared_storage">Stockage partagé interne</string>
+    <string name="text_tick_internal_shared_storage">Stockage partagé interne</string>
     <string name="text_tick_ftp">FTP</string>
     <string name="text_tick_music">La musique</string>
     <string name="text_tick_videos">Vidéos</string>

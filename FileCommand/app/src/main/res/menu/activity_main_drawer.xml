@@ -25,7 +25,7 @@
             <item
                 android:id="@+id/nav_internal_shared_storage"
                 android:icon="@drawable/internal_storage"
-                android:title="@string/text_internal_shared_storage" />
+                android:title="@string/text_tick_internal_shared_storage" />
             <item
                 android:id="@+id/nav_ftp"
                 android:icon="@drawable/ftp"

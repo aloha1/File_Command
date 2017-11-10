@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
-    <!--<include layout="@layout/include_toolbar"/>-->
+    <include layout ="@layout/card_premium"/>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -15,131 +15,168 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <LinearLayout android:id="@+id/layout_tick_english"
+            <RelativeLayout android:id="@+id/layout_remove_ads"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <ImageView
-                    android:id="@+id/image_tick_english"
+                    android:id="@+id/image_remove_ads"
                     android:layout_width="@dimen/digit_big_height"
                     android:layout_height="@dimen/digit_big_height"
                     android:layout_margin="@dimen/activity_margin_smaller"
-                    android:src="@drawable/square"/>
+                    android:src="@drawable/no_ads"/>
                 <TextView
-                    android:id="@+id/text_tick_english"
+                    android:id="@+id/title_remove_ads"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/activity_margin_smaller"
+                    android:layout_toRightOf="@+id/image_remove_ads"
+                    android:text="@string/remove_ads"/>
+                <TextView
+                    android:id="@+id/text_remove_ads"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/activity_margin_smaller"
+                    android:layout_toRightOf="@+id/image_remove_ads"
+                    android:layout_below="@+id/title_remove_ads"
                     android:text="English"/>
-            </LinearLayout>
+            </RelativeLayout>
 
-            <LinearLayout android:id="@+id/layout_tick_arabic"
+            <RelativeLayout android:id="@+id/layout_recycle_bin"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <ImageView
-                    android:id="@+id/image_tick_arabic"
+                    android:id="@+id/image_recycle_bin"
                     android:layout_width="@dimen/digit_big_height"
                     android:layout_height="@dimen/digit_big_height"
                     android:layout_margin="@dimen/activity_margin_smaller"
-                    android:src="@drawable/square"/>
+                    android:src="@drawable/recycle_bin"/>
                 <TextView
-                    android:id="@+id/text_tick_arabic"
+                    android:id="@+id/title_recycle_bin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/activity_margin_smaller"
-                    android:text="عربى"/>
-            </LinearLayout>
+                    android:layout_toRightOf="@+id/image_recycle_bin"
+                    android:text="@string/text_tick_recycle_bin"/>
+                <TextView
+                    android:id="@+id/text_recycle_bin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/activity_margin_smaller"
+                    android:layout_toRightOf="@+id/image_recycle_bin"
+                    android:layout_below="@+id/title_recycle_bin"
+                    android:text="English"/>
+            </RelativeLayout>
 
-            <LinearLayout android:id="@+id/layout_tick_german"
+            <RelativeLayout android:id="@+id/layout_favorite"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <ImageView
-                    android:id="@+id/image_tick_german"
+                    android:id="@+id/image_favorite"
                     android:layout_width="@dimen/digit_big_height"
                     android:layout_height="@dimen/digit_big_height"
                     android:layout_margin="@dimen/activity_margin_smaller"
-                    android:src="@drawable/square"/>
+                    android:src="@drawable/favorites"/>
                 <TextView
-                    android:id="@+id/text_tick_german"
+                    android:id="@+id/title_favorite"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/activity_margin_smaller"
-                    android:text="Deutsche"/>
-            </LinearLayout>
+                    android:layout_toRightOf="@+id/image_favorite"
+                    android:text="@string/text_tick_favorites"/>
+                <TextView
+                    android:id="@+id/text_favorite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/activity_margin_smaller"
+                    android:layout_toRightOf="@+id/image_favorite"
+                    android:layout_below="@+id/title_favorite"
+                    android:text="English"/>
+            </RelativeLayout>
 
-            <LinearLayout android:id="@+id/layout_tick_spanish"
+            <RelativeLayout android:id="@+id/layout_show_hidden_files_and_folders"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <ImageView
-                    android:id="@+id/image_tick_spanish"
+                    android:id="@+id/image_show_hidden_files_and_folders"
                     android:layout_width="@dimen/digit_big_height"
                     android:layout_height="@dimen/digit_big_height"
                     android:layout_margin="@dimen/activity_margin_smaller"
-                    android:src="@drawable/square"/>
+                    android:src="@drawable/documents"/>
                 <TextView
-                    android:id="@+id/text_tick_spanish"
+                    android:id="@+id/title_show_hidden_files_and_folders"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/activity_margin_smaller"
-                    android:text="Español"/>
-            </LinearLayout>
+                    android:layout_toRightOf="@+id/image_show_hidden_files_and_folders"
+                    android:text="Show hidden files and folders"/>
+                <TextView
+                    android:id="@+id/text_show_hidden_files_and_folders"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/activity_margin_smaller"
+                    android:layout_toRightOf="@+id/image_show_hidden_files_and_folders"
+                    android:layout_below="@+id/title_show_hidden_files_and_folders"
+                    android:text="English"/>
+            </RelativeLayout>
 
-            <LinearLayout android:id="@+id/layout_tick_french"
+            <RelativeLayout android:id="@+id/layout_storage_analyzer"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <ImageView
-                    android:id="@+id/image_tick_french"
+                    android:id="@+id/image_storage_analyzer"
                     android:layout_width="@dimen/digit_big_height"
                     android:layout_height="@dimen/digit_big_height"
                     android:layout_margin="@dimen/activity_margin_smaller"
-                    android:src="@drawable/square"/>
+                    android:src="@drawable/analyzer"/>
                 <TextView
-                    android:id="@+id/text_tick_french"
+                    android:id="@+id/title_storage_analyzer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/activity_margin_smaller"
-                    android:text="français"/>
-            </LinearLayout>
+                    android:layout_toRightOf="@+id/image_storage_analyzer"
+                    android:text="Analyzer"/>
+                <TextView
+                    android:id="@+id/text_storage_analyzer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/activity_margin_smaller"
+                    android:layout_toRightOf="@+id/image_storage_analyzer"
+                    android:layout_below="@+id/title_storage_analyzer"
+                    android:text="English"/>
+            </RelativeLayout>
 
-            <LinearLayout android:id="@+id/layout_tick_chinese"
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <ImageView
-                    android:id="@+id/image_tick_chinese"
-                    android:layout_width="@dimen/digit_big_height"
-                    android:layout_height="@dimen/digit_big_height"
-                    android:layout_margin="@dimen/activity_margin_smaller"
-                    android:src="@drawable/square"/>
-                <TextView
-                    android:id="@+id/text_tick_chinese"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/activity_margin_smaller"
-                    android:text="中文（简体）"/>
-            </LinearLayout>
+            <!--<RelativeLayout android:id="@+id/layout_favorite"-->
+                <!--android:orientation="horizontal"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content">-->
+                <!--<ImageView-->
+                    <!--android:id="@+id/image_favorite"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_margin="@dimen/activity_margin_smaller"-->
+                    <!--android:src="@drawable/favorites"/>-->
+                <!--<TextView-->
+                    <!--android:id="@+id/title_favorite"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_margin="@dimen/activity_margin_smaller"-->
+                    <!--android:layout_toRightOf="@+id/image_favorite"-->
+                    <!--android:text="@string/text_tick_favorites"/>-->
+                <!--<TextView-->
+                    <!--android:id="@+id/text_favorite"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_margin="@dimen/activity_margin_smaller"-->
+                    <!--android:layout_toRightOf="@+id/image_favorite"-->
+                    <!--android:layout_below="@+id/title_favorite"-->
+                    <!--android:text="English"/>-->
+            <!--</RelativeLayout>-->
 
-            <LinearLayout android:id="@+id/layout_tick_japanese"
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <ImageView
-                    android:id="@+id/image_tick_japanese"
-                    android:layout_width="@dimen/digit_big_height"
-                    android:layout_height="@dimen/digit_big_height"
-                    android:layout_margin="@dimen/activity_margin_smaller"
-                    android:src="@drawable/square"/>
-                <TextView
-                    android:id="@+id/text_tick_japanese"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/activity_margin_smaller"
-                    android:text="日本語"/>
-            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
