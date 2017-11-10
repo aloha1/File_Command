@@ -36,6 +36,7 @@ public class DocumentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private final LayoutInflater mLayoutInflater;
     private final Context mContext;
     private List<String> dataList;
+    private List<File> fileList;
 
     public DocumentAdapter(Context context, List<String> dataList) {
         mContext = context;
@@ -43,6 +44,8 @@ public class DocumentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         this.dataList = dataList;
         sharedPrefs = mContext.getSharedPreferences("myPrefs", MODE_PRIVATE);
     }
+
+
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             return new TextViewHolder(mLayoutInflater.inflate(R.layout.document_line_view, parent, false));
@@ -63,7 +66,9 @@ public class DocumentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             });
         }
     }
-
+    public void setFiles(List<File> files) {
+        this.fileList = files;
+    }
     private void setBitmap(String imageUri, ImageView imageView){
         File imgFile = new  File(imageUri);
         if(imgFile.exists()){

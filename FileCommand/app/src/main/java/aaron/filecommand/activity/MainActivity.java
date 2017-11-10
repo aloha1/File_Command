@@ -90,24 +90,11 @@ public class MainActivity extends AppCompatActivity
     protected void initAds(){
         MobileAds.initialize(getApplicationContext(),
                 "ca-app-pub-3456168518371304/2700959193");
-
         mAdView =   (AdView)  findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
-
     }
-//    protected void setInterstitialAd(){
-//        final mInterstitialAd = new InterstitialAd(this);
-//        mInterstitialAd.setAdUnitId(getResources().getString(R.string.interstitial_ad_unit_id));
-//        AdRequest adRequestInter = new AdRequest.Builder().build();
-//        mInterstitialAd.setAdListener(new AdListener() {
-//            @Override
-//            public void onAdLoaded() {
-//                mInterstitialAd.show();
-//            }
-//        });
-//        mInterstitialAd.loadAd(adRequestInter);
-//    }
+
     public void setDrawerLayout(){
         RelativeLayout layoutToolbar = (RelativeLayout)
                 toolbar.findViewById(R.id.toolbar_item_container);
@@ -129,7 +116,6 @@ public class MainActivity extends AppCompatActivity
         imageToolbar = (ImageView) findViewById(R.id.imgae_toolbar_title);
         setToolbarHome();
         setDrawerLayout();
-
         switch (checkAppStart()) {
             case NORMAL:
                 break;
@@ -191,29 +177,13 @@ public class MainActivity extends AppCompatActivity
         clearBackStack();
         setSupportActionBar(toolbar);
         imageToolbar.setVisibility(View.INVISIBLE);
-        imageToolbar.setImageResource(R.drawable.bag_white);
         if (id == R.id.nav_go_premium) {
-            initFragment();
-            Intent intent = new Intent(MainActivity.this, GoPremiumActivity.class);
-            startActivity(intent);
-        } else if (id == R.id.nav_home) {
-            initFragment();
-        }else if (id == R.id.nav_pictures) {
-            addNewFragment(new PhotoFragment());
-            toolbarTitle.setText(R.string.text_tick_picture);
-        }else if (id == R.id.nav_documents) {
-            mStorage = new Storage(this);
-            String dataContent = mStorage.getInternalFilesDirectory();
-            Log.d(TAG, dataContent);
-            addDocumentFragment(dataContent);
-            toolbarTitle.setText(R.string.text_tick_documents);
-        }else if (id == R.id.nav_videos) {
-            toolbarTitle.setText(R.string.text_tick_videos);
-            addNewFragment(new VideoFragment());
-        }else if (id == R.id.nav_music) {
-            addNewFragment(new MusicFragment());
-            toolbarTitle.setText(R.string.text_tick_music);
-        } else if (id == R.id.nav_recent_files) {
+            startPremium();
+        } else if (id == R.id.nav_home) {initFragment();} else if (id == R.id.nav_pictures) {
+            initPictures();
+        }else if (id == R.id.nav_documents) {initDocumentFragment();}else if (id == R.id.nav_videos) {
+            initVideos();
+        }else if (id == R.id.nav_music) {initMusic();} else if (id == R.id.nav_recent_files) {
             toolbarTitle.setText(R.string.text_tick_recent_files);
         } else if (id == R.id.nav_favorite) {
             toolbarTitle.setText(R.string.text_tick_favorites);
@@ -234,6 +204,39 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    public void initPictures(){
+        addNewFragment(new PhotoFragment());
+        toolbarTitle.setText(R.string.text_tick_picture);
+    }
+
+
+//        public void initDocumentFragment(){
+//            addNewFragment(new PhotoFragment());
+//            toolbarTitle.setText(R.string.text_tick_picture);
+//        }
+
+        public void initVideos(){
+        toolbarTitle.setText(R.string.text_tick_videos);
+        addNewFragment(new VideoFragment());
+        }
+
+        public void initMusic(){
+        addNewFragment(new MusicFragment());
+        toolbarTitle.setText(R.string.text_tick_music);
+        }
+
+
+    public void initDocumentFragment(){
+        mStorage = new Storage(this);
+        String dataContent = mStorage.getInternalFilesDirectory(); Log.d(TAG, dataContent);
+        addDocumentFragment(dataContent);
+        toolbarTitle.setText(R.string.text_tick_documents);
+    }
+
+    public void startPremium(){
+        initFragment();
+        startActivity( new Intent(MainActivity.this, GoPremiumActivity.class));
+    }
     public void addDocumentFragment(String data){
         DocumentFragment fragment = new DocumentFragment();
         getFragmentManager().beginTransaction().replace(R.id.container, fragment, "SubFragment")
@@ -277,7 +280,6 @@ public class MainActivity extends AppCompatActivity
             category.dbId = _algorithm_id;
             _algorithm_id = repo.insert(category);
             Log.d(TAG, "add:"+category.topic);
-            //Toast.makeText(this, "收藏", Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
     }
