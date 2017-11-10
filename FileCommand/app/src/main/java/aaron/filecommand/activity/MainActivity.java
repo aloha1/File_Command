@@ -26,6 +26,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.webkit.MimeTypeMap;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -36,6 +37,7 @@ import android.widget.Toast;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
 
 import java.io.File;
@@ -61,6 +63,7 @@ public class MainActivity extends AppCompatActivity
     }
     private static final String LAST_APP_VERSION = "last_app_version";
     private static final int PERMISSION_REQUEST_CODE = 1000;
+    private InterstitialAd mInterstitialAd;
 
     private String TAG  = "MainActivity";
     private Toolbar toolbar;
@@ -82,6 +85,7 @@ public class MainActivity extends AppCompatActivity
         initNavigation();
         initFragment();
         initAds();
+
     }
     protected void initAds(){
         MobileAds.initialize(getApplicationContext(),
@@ -92,28 +96,39 @@ public class MainActivity extends AppCompatActivity
         mAdView.loadAd(adRequest);
 
     }
-
-    private void initNavigation(){
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        toolbarTitle = (TextView) findViewById(R.id.text_toolbar_title);
-        imageToolbar = (ImageView) findViewById(R.id.imgae_toolbar_title);
-
-        setToolbarHome();
-
+//    protected void setInterstitialAd(){
+//        final mInterstitialAd = new InterstitialAd(this);
+//        mInterstitialAd.setAdUnitId(getResources().getString(R.string.interstitial_ad_unit_id));
+//        AdRequest adRequestInter = new AdRequest.Builder().build();
+//        mInterstitialAd.setAdListener(new AdListener() {
+//            @Override
+//            public void onAdLoaded() {
+//                mInterstitialAd.show();
+//            }
+//        });
+//        mInterstitialAd.loadAd(adRequestInter);
+//    }
+    public void setDrawerLayout(){
         RelativeLayout layoutToolbar = (RelativeLayout)
                 toolbar.findViewById(R.id.toolbar_item_container);
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
-
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setItemIconTintList(null);
         navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    private void initNavigation(){
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationIcon(R.drawable.menu_icon);
+        toolbarTitle = (TextView) findViewById(R.id.text_toolbar_title);
+        imageToolbar = (ImageView) findViewById(R.id.imgae_toolbar_title);
+        setToolbarHome();
+        setDrawerLayout();
 
         switch (checkAppStart()) {
             case NORMAL:
@@ -151,7 +166,6 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void clearToolbarHome(){
-        toolbarTitle.setText(R.string.text_tick_home);
         imageToolbar.setVisibility(View.GONE);
     }
 
@@ -182,12 +196,13 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-        clearToolbarHome();
+        clearBackStack();
+        setSupportActionBar(toolbar);
+        imageToolbar.setVisibility(View.INVISIBLE);
+        imageToolbar.setImageResource(R.drawable.bag_white);
         if (id == R.id.nav_go_premium) {
             // Handle the camera action
-
         } else if (id == R.id.nav_home) {
-            clearBackStack();
             initFragment();
         }else if (id == R.id.nav_pictures) {
             addNewFragment(new PhotoFragment());
@@ -218,7 +233,7 @@ public class MainActivity extends AppCompatActivity
         }else{
 
         }
-
+        setDrawerLayout();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
@@ -350,6 +365,11 @@ public class MainActivity extends AppCompatActivity
         } catch (ActivityNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    public void setAd(){
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId("ca-app-pub-3456168518371304/4640726822");
     }
     @Override
     public void onBackPressed() {

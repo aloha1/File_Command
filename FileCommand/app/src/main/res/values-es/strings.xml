@@ -38,7 +38,7 @@
     <string name="text_tick_convert_files">Convertir archivos</string>
     <string name="text_tick_recycle_bin">Papelera de reciclaje</string>
     <string name="text_tick_favorites">Favoritos</string>
-    <string name="text_tick_pc_file_transfer">Transferencia de archivos de PC</string>
+    <string name="text_tick_pc_files_transfer">Transferencia de archivos de PC</string>
     <string name="text_tick_screen_sharing">Compartir pantalla</string>
 
     <string name="text_tick_language">Idioma</string>

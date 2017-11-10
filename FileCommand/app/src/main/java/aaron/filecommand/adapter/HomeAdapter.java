@@ -50,12 +50,16 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
         if (holder instanceof TextViewHolder) {
-            String data = dataList.get(position).getTagString().replace("_"," ");
+//            String data = dataList.get(position).getTagString().replace("_"," ");
+            String stringRes = dataList.get(position).getDescription().replace("image","text");
+            Log.d(TAG,"Text is: " + stringRes);
+            int resId = mContext.getResources().getIdentifier(stringRes, "string", mContext.getPackageName());
             try {
-                ((TextViewHolder)holder).mTextView.setText(data);
-                int resId = mContext.getResources().getIdentifier(dataList.get(position).getTagString(), "drawable", mContext.getPackageName());
-                Log.d(TAG,"resID is: "+resId);
-                Drawable drawable = mContext.getResources().getDrawable(resId);
+                String res = mContext.getResources().getString(resId);
+                ((TextViewHolder)holder).mTextView.setText(res);
+                int drawableId = mContext.getResources().getIdentifier(dataList.get(position).getTagString(), "drawable", mContext.getPackageName());
+                Log.d(TAG,"Drawable is: "+drawableId);
+                Drawable drawable = mContext.getResources().getDrawable(drawableId);
                 ((TextViewHolder) holder).imageView.setImageDrawable(drawable);
             }catch (Exception e){
                 e.printStackTrace();

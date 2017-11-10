@@ -38,7 +38,7 @@
     <string name="text_tick_convert_files">تحويل ملفات</string>
     <string name="text_tick_recycle_bin">سلة المهملات</string>
         <string name="text_tick_favorites">المفضلة</string>
-    <string name="text_tick_pc_file_transfer">بيسي نقل الملفات</string>
+    <string name="text_tick_pc_files_transfer">بيسي نقل الملفات</string>
     <string name="text_tick_screen_sharing">مشاركة الشاشة</string>
 
     <string name="text_tick_language">لغة</string>

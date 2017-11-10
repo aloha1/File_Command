@@ -24,7 +24,6 @@ import java.util.List;
 
 import javax.crypto.Cipher;
 
-
 public class Storage {
 
     private static final String TAG = "Storage";

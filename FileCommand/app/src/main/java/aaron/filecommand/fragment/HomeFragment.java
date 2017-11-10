@@ -124,6 +124,7 @@ public class HomeFragment extends Fragment {
             //transfer image name into image id and text,
             ClassBean classBean = new ClassBean();
             classBean.setTagString(data.replace("image_tick_",""));
+            classBean.setDescription(data);
             classBean.setCoverImageUri(data);
             listTemp.add(classBean);
             initRecycler(view, listTemp);

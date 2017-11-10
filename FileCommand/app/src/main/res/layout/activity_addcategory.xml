@@ -228,7 +228,7 @@
                     android:layout_width="wrap_content"
                     android:layout_margin="@dimen/activity_margin_smaller"
                     android:layout_height="wrap_content"
-                    android:text="@string/text_tick_pc_file_transfer"/>
+                    android:text="@string/text_tick_pc_files_transfer"/>
             </LinearLayout>
 
             <LinearLayout android:id="@+id/layout_tick_screen_sharing"

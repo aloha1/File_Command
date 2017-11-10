@@ -3,9 +3,7 @@ package aaron.filecommand.activity.helper;
 import android.support.design.widget.Snackbar;
 import android.view.View;
 
-/**
- * Created by sromku on June, 2017.
- */
+
 public class Helper {
 
     public static void showSnackbar(String message, View root) {
@@ -27,8 +25,6 @@ public class Helper {
                 ext = ext.substring(0, ext.indexOf("/"));
             }
             return ext.toLowerCase();
-
         }
     }
-
 }

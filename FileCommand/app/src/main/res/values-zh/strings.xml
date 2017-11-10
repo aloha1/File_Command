@@ -38,7 +38,7 @@
     <string name="text_tick_convert_files">转换文件</string>
     <string name="text_tick_recycle_bin">回收站</string>
     <string name="text_tick_favorites">最爱</string>
-    <string name="text_tick_pc_file_transfer">PC文件传输</string>
+    <string name="text_tick_pc_files_transfer">PC文件传输</string>
     <string name="text_tick_screen_sharing">屏幕共享</string>
 
     <string name="text_tick_language">语言</string>

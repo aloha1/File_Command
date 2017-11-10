@@ -12,11 +12,11 @@
             android:title="@string/text_tick_home" />
         <item
             android:id="@+id/nav_recent_files"
-            android:icon="@drawable/recent"
+            android:icon="@drawable/recent_files"
             android:title="@string/text_tick_recent_files"/>
         <item
             android:id="@+id/nav_favorite"
-            android:icon="@drawable/favorite"
+            android:icon="@drawable/favorites"
             android:title="@string/text_tick_favorites" />
     </group>
 
@@ -36,7 +36,7 @@
         <menu>
             <item
             android:id="@+id/nav_pictures"
-            android:icon="@drawable/pictures"
+            android:icon="@drawable/picture"
             android:title="@string/text_tick_picture" />
             <item
                 android:id="@+id/nav_music"
@@ -56,7 +56,7 @@
                 android:title="@string/text_tick_archives" />
             <item
                 android:id="@+id/nav_downloads"
-                android:icon="@drawable/download"
+                android:icon="@drawable/downloads"
                 android:title="@string/text_tick_downloads" />
             <item
                 android:id="@+id/nav_settings"

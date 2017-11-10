@@ -38,7 +38,7 @@
     <string name="text_tick_convert_files">ファイルを変換する</string>
     <string name="text_tick_recycle_bin">ごみ箱</string>
     <string name="text_tick_favorites">お気に入り</string>
-    <string name="text_tick_pc_file_transfer">PCファイル転送</string>
+    <string name="text_tick_pc_files_transfer">PCファイル転送</string>
     <string name="text_tick_screen_sharing">画面共有</string>
 
     <string name="text_tick_language">言語</string>

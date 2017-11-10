@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,6 +22,7 @@ import java.util.List;
 
 import aaron.filecommand.R;
 import aaron.filecommand.adapter.AppStoreAdapter;
+import aaron.filecommand.adapter.DocumentAdapter;
 import aaron.filecommand.adapter.PhotoAdapter;
 import aaron.filecommand.model.ClassBean;
 
@@ -67,13 +69,12 @@ public class VideoFragment extends Fragment {
         RecyclerView recyclerView =  view.findViewById(R.id.recyclerview_photo);
         recyclerView.setHasFixedSize(true);
 
-        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getActivity(),2);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
 
         listImage = new ArrayList<>();
-        Log.d(TAG,getVideoList().get(0));
         listImage = getVideoList();
-        PhotoAdapter adapter = new PhotoAdapter(getActivity(), listImage);
+        DocumentAdapter adapter = new DocumentAdapter(getActivity(), listImage);
         recyclerView.setAdapter(adapter);
     }
     List<String> getVideoList() {
