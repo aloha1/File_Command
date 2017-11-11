@@ -1,16 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:id="@+id/layout_fragment_my_classes"
+
+<LinearLayout android:id="@+id/layout_fragment_home"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <android.support.v7.widget.RecyclerView
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <include layout="@layout/card_appstore"/>
+
+        <android.support.v7.widget.RecyclerView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/recyclerview_home" />
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="fill_parent"
-        android:id="@+id/recyclerview_home" />
+        android:layout_height="wrap_content">
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_home_editor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/activity_margin_smaller"
+            android:layout_alignParentRight="true">
+            <ImageView
+                android:id="@+id/image_home_editor"
+                android:layout_width="@dimen/image_history_width"
+                android:layout_height="@dimen/image_bot_height"
+                android:src="@drawable/editor" />
+        </android.support.v7.widget.CardView>
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_home_analyzer"
+            android:layout_below="@+id/card_home_editor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/activity_margin_smaller"
+            android:layout_alignParentRight="true">
+            <ImageView
+                android:id="@+id/image_home_analyzer"
+                android:layout_width="@dimen/image_bot_height"
+                android:layout_height="@dimen/image_bot_height"
+                android:src="@drawable/analyzer" />
+        </android.support.v7.widget.CardView>
+    </RelativeLayout>
 
-</LinearLayout>
-
+    </LinearLayout>

@@ -3,8 +3,10 @@ package aaron.filecommand.adapter;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,7 +50,20 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
         if (holder instanceof TextViewHolder) {
-            ((TextViewHolder)holder).mTextView.setText(dataList.get(position).getTagString());
+//            String data = dataList.get(position).getTagString().replace("_"," ");
+            String stringRes = dataList.get(position).getDescription().replace("image","text");
+            Log.d(TAG,"Text is: " + stringRes);
+            int resId = mContext.getResources().getIdentifier(stringRes, "string", mContext.getPackageName());
+            try {
+                String res = mContext.getResources().getString(resId);
+                ((TextViewHolder)holder).mTextView.setText(res);
+                int drawableId = mContext.getResources().getIdentifier(dataList.get(position).getTagString(), "drawable", mContext.getPackageName());
+                Log.d(TAG,"Drawable is: "+drawableId);
+                Drawable drawable = mContext.getResources().getDrawable(drawableId);
+                ((TextViewHolder) holder).imageView.setImageDrawable(drawable);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
         }
     }
 
@@ -73,7 +88,6 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
             imageView =  view.findViewById(R.id.image_content);
             mTextView = view.findViewById(R.id.text_content);
         }
-
     }
 
     @Override

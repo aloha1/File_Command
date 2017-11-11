@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">ファイルコマンド</string>
+
+    <string name="navigation_drawer_open">ナビゲーション・ドロワーを開く</string>
+    <string name="navigation_drawer_close">ナビゲーション・ドロワーを閉じる</string>
+
+    <string name="action_settings">設定</string>
+
+    <!--category-->
+    <string-array name="category">
+        <item>ピクチャー</item>
+    </string-array>
+
+    <string name="our_recommend_app">おすすめアプリ</string>
+    <string name="title_add_category">カテゴリを追加</string>
+    
+    <!--File Command-->
+    <string name="file_command_title">ファイルコマンド</string>
+    <string name="file_command_content">ファイルコマンドは、機能豊富で強力なファイルマネージャーで、
+        クリーンで直感的なインターフェイスを介してAndroidデバイスまたはクラウドストレージ。写真、音楽、ビデオ、
+        いくつかのタップでファイルの名前変更、削除、移動、圧縮、変換、および送信を行うことができます。また、ファイルコンバータ機能では、
+        ファイルを1200種類以上の異なるフォーマットに簡単に変換できます. </string>
+    <string name="ad_unit_id_algo">ca-app-pub-3456168518371304/2700959193</string>
+    <string name="click_to_exit">もう一度終了をクリックします</string>
+    <!--data base-->
+    <string name="text_tick_go_premium">行くプレミアム</string>
+    <string name="text_tick_home">ホーム</string>
+    <string name="text_tick_picture">画像</string>
+    <string name="text_tick_internal_shared_storage">内部共有ストレージ</string>
+    <string name="text_tick_ftp">FTP</string>
+    <string name="text_tick_music">音楽</string>
+    <string name="text_tick_videos">ビデオ</string>
+    <string name="text_tick_documents">ドキュメント</string>
+    <string name="text_tick_archives">アーカイブ</string>
+    <string name="text_tick_downloads">ダウンロード</string>
+    <string name="text_tick_secured_files">保護されたファイル</string>
+    <string name="text_tick_recent_files">最近のファイル</string>
+    <string name="text_tick_convert_files">ファイルを変換する</string>
+    <string name="text_tick_recycle_bin">ごみ箱</string>
+    <string name="text_tick_favorites">お気に入り</string>
+    <string name="text_tick_pc_files_transfer">PCファイル転送</string>
+    <string name="text_tick_screen_sharing">画面共有</string>
+
+    <string name="text_tick_language">言語</string>
+    <string name="no_content">コンテンツなし</string>
+</resources>

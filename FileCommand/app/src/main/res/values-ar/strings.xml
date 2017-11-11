@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">ملف الأمر</string>
+
+    <string name="navigation_drawer_open">فتح درج التنقل</string>
+    <string name="navigation_drawer_close">إغلاق درج التنقل</string>
+
+    <string name="action_settings">إعدادات</string>
+
+    <!--category-->
+    <string-array name="category">
+        <item>صور</item>
+    </string-array>
+
+    <string name="our_recommend_app">لدينا الموصى بها التطبيق</string>
+    <string name="title_add_category">إضافة فئة</string>
+    
+    <!--File Command-->
+    <string name="file_command_title">ملف الأمر</string>
+    <string name="file_command_content"> تسمح لك للتعامل مع أي ملف على الخاص بك
+        جهاز الروبوت أو سحابة التخزين عبر واجهة نظيفة وبديهية. يمكنك التعامل بشكل منفصل المكتبات من الصور، والموسيقى، وأشرطة الفيديو،
+        الوثائق، وكذلك إعادة تسمية، حذف، نقل، والرمز البريدي، وتحويل وإرسال الملفات مع عدد قليل من الصنابير. أيضا، مع ميزة تحويل الملف لدينا،
+        يمكنك بسهولة تحويل الملفات الخاصة بك إلى واحدة من أكثر من 1200 أشكال مختلفة.</string>
+    <string name="ad_unit_id_algo">ca-app-pub-3456168518371304/2700959193</string>
+    <string name="click_to_exit">انقر مرة أخرى للخروج</string>
+    <!--data base-->
+    <string name="text_tick_go_premium">احصل على الاشتراك الرئيسي</string>
+    <string name="text_tick_home">الصفحة الرئيسية</string>
+    <string name="text_tick_picture">صورة</string>
+    <string name="text_tick_internal_shared_storage">التخزين المشترك الداخلي</string>
+    <string name="text_tick_ftp">FTP</string>
+    <string name="text_tick_music">موسيقى</string>
+    <string name="text_tick_videos">أشرطة فيديو</string>
+    <string name="text_tick_documents">مستندات</string>
+    <string name="text_tick_archives">أرشيف</string>
+    <string name="text_tick_downloads">Downloads</string>
+    <string name="text_tick_secured_files">التنزيلات</string>
+    <string name="text_tick_recent_files">الملفات الأخيرة</string>
+    <string name="text_tick_convert_files">تحويل ملفات</string>
+    <string name="text_tick_recycle_bin">سلة المهملات</string>
+        <string name="text_tick_favorites">المفضلة</string>
+    <string name="text_tick_pc_files_transfer">بيسي نقل الملفات</string>
+    <string name="text_tick_screen_sharing">مشاركة الشاشة</string>
+
+    <string name="text_tick_language">لغة</string>
+    <string name="no_content">لا يوجد محتوى</string>
+</resources>
