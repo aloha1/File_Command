@@ -17,6 +17,7 @@ import java.util.Collections;
 import java.util.List;
 
 import aaron.filecommand.R;
+import aaron.filecommand.activity.MainActivity;
 import aaron.filecommand.adapter.helper.ItemTouchHelperAdapter;
 import aaron.filecommand.adapter.helper.OnStartDragListener;
 import aaron.filecommand.model.ClassBean;
@@ -50,13 +51,18 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
         if (holder instanceof TextViewHolder) {
-//            String data = dataList.get(position).getTagString().replace("_"," ");
             String stringRes = dataList.get(position).getDescription().replace("image","text");
             Log.d(TAG,"Text is: " + stringRes);
             int resId = mContext.getResources().getIdentifier(stringRes, "string", mContext.getPackageName());
             try {
-                String res = mContext.getResources().getString(resId);
+                final String res = mContext.getResources().getString(resId);
                 ((TextViewHolder)holder).mTextView.setText(res);
+                ((TextViewHolder)holder).mTextView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        gotoPage(res);
+                    }
+                });
                 int drawableId = mContext.getResources().getIdentifier(dataList.get(position).getTagString(), "drawable", mContext.getPackageName());
                 Log.d(TAG,"Drawable is: "+drawableId);
                 Drawable drawable = mContext.getResources().getDrawable(drawableId);
@@ -67,6 +73,37 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
         }
     }
 
+    public void gotoPage(String res){
+        switch (res){
+            case "Favorites":
+                break;
+            case "Documents":
+                break;
+            case "Picture":
+                ((MainActivity) mContext).initPictures();
+                break;
+            case "Music":
+                ((MainActivity) mContext).initMusic();
+                break;
+            case "Archives":
+                break;
+            case "Downloads":
+                break;
+            case "Convert Files":
+                break;
+            case "Recycler Bin":
+                break;
+            case "Videos":
+                ((MainActivity) mContext).initVideos();
+                break;
+            case "Recent Files":
+                break;
+            default:
+                break;
+
+        }
+
+    }
     @Override
     public int getItemCount() {
         return (dataList.size() >= 1)?dataList.size():1;

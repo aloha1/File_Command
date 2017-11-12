@@ -188,7 +188,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_favorite) {
             toolbarTitle.setText(R.string.text_tick_favorites);
         } else if (id == R.id.nav_internal_shared_storage) {
-            toolbarTitle.setText(R.string.text_tick_internal_shared_storage);
+            initInternalStorageFragment();
         } else if (id == R.id.nav_ftp) {
             toolbarTitle.setText(R.string.text_tick_ftp);
         }else if (id == R.id.nav_language) {
@@ -208,29 +208,27 @@ public class MainActivity extends AppCompatActivity
         addNewFragment(new PhotoFragment());
         toolbarTitle.setText(R.string.text_tick_picture);
     }
-
-
-//        public void initDocumentFragment(){
-//            addNewFragment(new PhotoFragment());
-//            toolbarTitle.setText(R.string.text_tick_picture);
-//        }
-
-        public void initVideos(){
+    public void initVideos(){
         toolbarTitle.setText(R.string.text_tick_videos);
         addNewFragment(new VideoFragment());
-        }
+    }
 
-        public void initMusic(){
+    public void initMusic(){
         addNewFragment(new MusicFragment());
         toolbarTitle.setText(R.string.text_tick_music);
-        }
-
+    }
 
     public void initDocumentFragment(){
         mStorage = new Storage(this);
         String dataContent = mStorage.getInternalFilesDirectory(); Log.d(TAG, dataContent);
         addDocumentFragment(dataContent);
         toolbarTitle.setText(R.string.text_tick_documents);
+    }
+
+    public void initInternalStorageFragment(){
+        initFragment();
+        Intent intent = new Intent(MainActivity.this, InternalStorageActivity.class);
+        startActivity(intent);
     }
 
     public void startPremium(){
