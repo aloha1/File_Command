@@ -45,6 +45,7 @@ import java.util.Collections;
 import java.util.List;
 
 import aaron.filecommand.R;
+import aaron.filecommand.activity.login.LoginMainActivity;
 import aaron.filecommand.dao.Category;
 import aaron.filecommand.dao.CategoryRepo;
 import aaron.filecommand.fragment.DocumentFragment;
@@ -114,6 +115,14 @@ public class MainActivity extends AppCompatActivity
         toolbar.setNavigationIcon(R.drawable.menu_icon);
         toolbarTitle = (TextView) findViewById(R.id.text_toolbar_title);
         imageToolbar = (ImageView) findViewById(R.id.imgae_toolbar_title);
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, LoginMainActivity.class);
+                startActivity(intent);
+            }
+        });
         setToolbarHome();
         setDrawerLayout();
         switch (checkAppStart()) {
@@ -194,6 +203,9 @@ public class MainActivity extends AppCompatActivity
         }else if (id == R.id.nav_language) {
             initFragment();
             Intent intent = new Intent(MainActivity.this, LanguageActivity.class);
+            startActivity(intent);
+        }else if (id == R.id.nav_settings) {
+            Intent intent = new Intent(MainActivity.this, LoginMainActivity.class);
             startActivity(intent);
         }else{
 

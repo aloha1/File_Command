@@ -44,4 +44,12 @@
 
     <string name="text_tick_language">Language</string>
     <string name="no_content">No Content</string>
+
+    <string name="action_logout">Logout</string>
+
+    <string name="login_with_facebook">Login with Facebook</string>
+    <string name="login_with_google">Login with Google+</string>
+    <string name="login_with_twitter">Login with Twitter</string>
+    <string name="login_with_password">Login with Password</string>
+    <string name="login_anonymously">Login Anonymously</string>
 </resources>

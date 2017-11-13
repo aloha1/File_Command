@@ -24,7 +24,6 @@ import aaron.filecommand.R;
 import aaron.filecommand.activity.MainActivity;
 import aaron.filecommand.model.ClassBean;
 
-import static aaron.filecommand.R.id.imageView;
 import static aaron.filecommand.activity.helper.Helper.fileExt;
 import static android.content.Context.MODE_PRIVATE;
 
